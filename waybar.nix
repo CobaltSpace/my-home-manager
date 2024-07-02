@@ -15,22 +15,22 @@
           "8" = "八";
           "9" = "九";
           "10" = "十";
-          "11" = "-";
-          "12" = "=";
+          "11" = "";
+          "12" = "";
         };
         wlr_window = {
           format = " {}";
           rewrite = {
-            "(.*) - YouTube — Mozilla Firefox$" = "   $1";
-            # "^YouTube — Mozilla Firefox$"= "   $1";
-            "(.*) — Mozilla Firefox$" = "  $1";
-            "^Mozilla Firefox$" = "";
-            "(.*) — Tor Browser$" = "🌐 $1";
-            "^Tor Browser$" = "🌐";
-            "(.*) - Chromium$" = "  $1";
+            "(.*) - YouTube — Mozilla Firefox$" = "󰈹  $1";
+            # "^YouTube — Mozilla Firefox$"= "󰈹   $1";
+            "(.*) — Mozilla Firefox$" = "󰈹$1";
+            "^Mozilla Firefox$" = "󰈹";
+            "(.*) — Tor Browser$" = "$1";
+            "^Tor Browser$" = "";
+            "(.*) - Chromium$" = " $1";
             "^Zoom Meeting$" = " ";
-            "(.*) - vim" = " $1";
-            "(.*) - zsh" = " [$1]";
+            "(.*) - NVIM" = "$1";
+            # "(.*) - zsh" = " [$1]";
           };
         };
       in
@@ -123,15 +123,38 @@
         };
         cpu.interval = 1;
         memory.interval = 1;
-        temperature.interval = 1;
+        temperature = {
+          interval = 1;
+          format-icons = [ "" "" "" "" "" "" ];
+          hwmon-path-abs = lib.mkIf (builtins.pathExists /sys/devices/platform/coretemp.0/hwmon) "/sys/devices/platform/coretemp.0/hwmon";
+          input-filename = "temp1_input";
+        };
         backlight = {
-          on-scroll-up = "brightnessctl s 5%-";
-          on-scroll-down = "brightnessctl s 5%+";
+          scroll-step = 5;
+          # format-icons = [ "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ];
+          format-icons = [ "󰛩" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨" ];
         };
         pulseaudio = {
           on-click-right = "qpwgraph";
           on-click-middle = "easyeffects";
         };
       };
+    style = /*css*/ ''
+      @import "/etc/xdg/waybar/style.css" /* layer(default) */;
+
+      * {
+          /* `otf-font-awesome` is required to be installed for icons */
+          font-family: "Quicksand", "Symbols Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Klee One SemiBold", "IPAexGothic", Helvetica, Arial, sans-serif;
+      }
+
+      window#waybar {
+          background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      #workspaces button.active {
+          background-color: #64727D;
+          box-shadow: inset 0 -3px #ffffff;
+      }
+    '';
   };
 }
