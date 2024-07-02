@@ -4,29 +4,13 @@
     package = lib.mkIf (lib.pathExists /usr/bin/waybar) pkgs.emptyDirectory;
     settings.mainBar =
       let
-        format-icons = {
-          "1" = "一";
-          "2" = "二";
-          "3" = "三";
-          "4" = "四";
-          "5" = "五";
-          "6" = "六";
-          "7" = "七";
-          "8" = "八";
-          "9" = "九";
-          "10" = "十";
-          "11" = "";
-          "12" = "";
-        };
         wlr_window = {
           format = " {}";
           rewrite = {
-            "(.*) - YouTube — Mozilla Firefox$" = "󰈹  $1";
-            # "^YouTube — Mozilla Firefox$"= "󰈹   $1";
-            "(.*) — Mozilla Firefox$" = "󰈹$1";
-            "^Mozilla Firefox$" = "󰈹";
+            "(.*) Subscriptions - YouTube — Mozilla Firefox$" = "󰈹 󰵀 $1";
+            "^(.*) - YouTube — Mozilla Firefox$" = "󰈹  $1";
+            "^(.*) — Mozilla Firefox$" = "󰈹$1";
             "(.*) — Tor Browser$" = "$1";
-            "^Tor Browser$" = "";
             "(.*) - Chromium$" = " $1";
             "^Zoom Meeting$" = " ";
             "(.*) - NVIM" = "$1";
@@ -67,15 +51,25 @@
         "sway/workspaces".format = "{name}";
         "wlr/workspaces" = {
           format = "{icon}";
-          format-icons = format-icons;
+          format-icons = {
+            "1" = "一";
+            "2" = "二";
+            "3" = "三";
+            "4" = "四";
+            "5" = "五";
+            "6" = "六";
+            "7" = "七";
+            "8" = "八";
+            "9" = "九";
+            "10" = "十";
+            "11" = "";
+            "12" = "";
+          };
           sort-by-number = true;
           on-click = "activate";
         };
         "hyprland/workspaces" = {
-          format = "{icon}";
-          format-icons = format-icons;
-          sort-by-number = true;
-          on-click = "activate";
+          inherit (config.programs.waybar.settings.mainBar."wlr/workspaces") format format-icons sort-by-number on-click;
           on-scroll-up = "hyprctl dispatch workspace m+1";
           on-scroll-down = "hyprctl dispatch workspace m-1";
         };
@@ -126,7 +120,12 @@
         temperature = {
           interval = 1;
           format-icons = [ "" "" "" "" "" "" ];
-          hwmon-path-abs = lib.mkIf (builtins.pathExists /sys/devices/platform/coretemp.0/hwmon) "/sys/devices/platform/coretemp.0/hwmon";
+          hwmon-path-abs =
+            if (builtins.pathExists "/sys/devices/pci0000:00/0000:00:18.3/hwmon") then
+              "/sys/devices/pci0000:00/0000:00:18.3/hwmon"
+            else
+              lib.mkIf (builtins.pathExists /sys/devices/platform/coretemp.0/hwmon)
+                "/sys/devices/platform/coretemp.0/hwmon";
           input-filename = "temp1_input";
         };
         backlight = {

@@ -9,5 +9,7 @@
   home.packages = with pkgs; [
     nixd
     nixpkgs-fmt
+    nurl
+    statix
   ];
 }

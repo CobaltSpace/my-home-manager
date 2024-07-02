@@ -22,9 +22,8 @@
       searchUpKey = "$terminfo[kcuu1]";
       searchDownKey = "$terminfo[kcud1]";
     };
-    initExtraFirst = (
-      if (with config.programs.starship; enable && enableZshIntegration)
-      then "prompt off"
+    initExtraFirst =
+      if (with config.programs.starship; enable && enableZshIntegration) then "prompt off"
       else
         lib.strings.concatLines [
           # Enable Powerlevel10k instant prompt. Should stay close to the top of .zshrc.
@@ -46,8 +45,7 @@
               [[ ! -f "${config.xdg.configHome}/zsh/.p10k.zsh" ]] || source "${config.xdg.configHome}/zsh/.p10k.zsh"
             fi
           ''
-        ]
-    );
+        ];
     initExtra = lib.strings.concatLines [
       (lib.strings.optionalString (builtins.pathExists /usr/share/zsh) "unset HELPDIR")
       # sh

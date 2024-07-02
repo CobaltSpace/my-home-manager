@@ -31,6 +31,8 @@
           ./node.nix
           ./shell
           ./waybar.nix
+
+          ./local.nix
         ];
 
         # Optionally use extraSpecialArgs

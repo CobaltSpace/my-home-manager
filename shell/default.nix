@@ -74,5 +74,13 @@
         ln -s /usr/bin/starship $out/bin/
       '');
     };
+    bat = {
+      enable = true;
+      package = lib.mkIf (builtins.pathExists /usr/bin/bat) (pkgs.runCommandLocal "system-bat" { meta.mainProgram = "bat"; } ''
+        mkdir -p $out/bin
+        ln -s /usr/bin/bat $out/bin/
+      '');
+      catppuccin.enable = true;
+    };
   };
 }
