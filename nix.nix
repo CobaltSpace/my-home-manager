@@ -6,6 +6,7 @@
       # use-xdg-base-directories = true;
     };
   };
+  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     nixd
     nixpkgs-fmt

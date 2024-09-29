@@ -3,6 +3,14 @@
     [
       vale
       xdg-ninja
+      animdl
+      adl
+      mcstatus
+      # wlx-overlay-s
+      # hyprland
+      # vesktop
+
+      # jprofiler
 
       # # It is sometimes useful to fine-tune packages, for example, by applying
       # # overrides. You can do that directly here, just don't forget the

@@ -7,6 +7,7 @@
         wlr_window = {
           format = " {}";
           rewrite = {
+            "(.*) - Twitch — Mozilla Firefox$" = "󰈹  $1";
             "(.*) Subscriptions - YouTube — Mozilla Firefox$" = "󰈹 󰵀 $1";
             "^(.*) - YouTube — Mozilla Firefox$" = "󰈹  $1";
             "^(.*) — Mozilla Firefox$" = "󰈹$1";
@@ -113,7 +114,13 @@
         };
         clock = {
           interval = 1;
-          format = "{:%H:%M:%S}";
+          format = "{:%T}";
+          timezones = [
+            "US/Pacific"
+            "US/Eastern"
+            "Asia/Tokyo"
+            "Europe/Amsterdam"
+          ];
         };
         cpu.interval = 1;
         memory.interval = 1;

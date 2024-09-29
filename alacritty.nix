@@ -2,12 +2,11 @@
   programs.alacritty = {
     enable = true;
     package = lib.mkIf (builtins.pathExists /usr/bin/alacritty) pkgs.emptyDirectory;
-    catppuccin.enable = true;
     settings = {
-      # import = [
-      #   "${pkgs.alacritty-theme}/catppuccin.toml"
-      # ];
-      colors.primary.background = lib.mkForce "#000000";
+      import = [
+        "${pkgs.alacritty-theme}/catppuccin.toml"
+      ];
+      colors.primary.background = "#000000";
       cursor.style.blinking = "On";
       font = {
         size = 10;

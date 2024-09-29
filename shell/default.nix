@@ -3,7 +3,7 @@
     ./zsh.nix
   ];
   home.shellAliases = {
-    home-manager = "home-manager --impure";
+    # home-manager = "home-manager --impure";
 
     ffmpeg = "nice -n 19 ffmpeg -hide_banner";
     ffprobe = "ffprobe -hide_banner";
