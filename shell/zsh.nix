@@ -64,7 +64,7 @@
 
         unalias lsd
 
-        eval "$(pnpm completion zsh)"
+        # eval "$(pnpm completion zsh)"
 
         export env_sources="''${env_sources+$env_sources,}zsh.nix"
       ''

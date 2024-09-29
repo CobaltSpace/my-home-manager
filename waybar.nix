@@ -134,6 +134,7 @@
               lib.mkIf (builtins.pathExists /sys/devices/platform/coretemp.0/hwmon)
                 "/sys/devices/platform/coretemp.0/hwmon";
           input-filename = "temp1_input";
+          critical-temperature = 90;
         };
         backlight = {
           scroll-step = 5;
