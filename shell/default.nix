@@ -80,7 +80,15 @@
         mkdir -p $out/bin
         ln -s /usr/bin/bat $out/bin/
       '');
-      catppuccin.enable = true;
+      # catppuccin.enable = true;
+      config.theme = "Catppuccin Mocha";
+      themes."Catppuccin Mocha" = {
+        src = pkgs.catppuccin.override {
+          themeList = [ "bat" ];
+          variant = "mocha";
+        };
+        file = "bat/Catppuccin Mocha.tmTheme";
+      };
     };
   };
 }

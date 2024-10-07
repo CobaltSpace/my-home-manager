@@ -1,12 +1,13 @@
 { config, lib, ... }: {
   imports = [
-    <catppuccin/modules/home-manager>
-    ./alacritty.nix
+    # <catppuccin/modules/home-manager>
+
+    ./shell
+    ./graphical
+
     ./miscpkgs.nix
     ./nix.nix
     ./node.nix
-    ./shell
-    ./waybar.nix
 
     ./local.nix
   ];

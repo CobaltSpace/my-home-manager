@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   programs.waybar = {
     enable = true;
     package = lib.mkIf (lib.pathExists /usr/bin/waybar) pkgs.emptyDirectory;
@@ -17,6 +23,25 @@
             "(.*) - NVIM" = "$1";
             # "(.*) - zsh" = " [$1]";
           };
+        };
+        wlr_workspaces = {
+          format = "{icon}";
+          format-icons = {
+            "1" = "一";
+            "2" = "二";
+            "3" = "三";
+            "4" = "四";
+            "5" = "五";
+            "6" = "六";
+            "7" = "七";
+            "8" = "八";
+            "9" = "九";
+            "10" = "十";
+            "11" = "";
+            "12" = "";
+          };
+          sort-by-number = true;
+          on-click = "activate";
         };
       in
       {
@@ -50,30 +75,14 @@
           "tray"
         ];
         "sway/workspaces".format = "{name}";
-        "wlr/workspaces" = {
-          format = "{icon}";
-          format-icons = {
-            "1" = "一";
-            "2" = "二";
-            "3" = "三";
-            "4" = "四";
-            "5" = "五";
-            "6" = "六";
-            "7" = "七";
-            "8" = "八";
-            "9" = "九";
-            "10" = "十";
-            "11" = "";
-            "12" = "";
-          };
-          sort-by-number = true;
-          on-click = "activate";
-        };
-        "hyprland/workspaces" = {
-          inherit (config.programs.waybar.settings.mainBar."wlr/workspaces") format format-icons sort-by-number on-click;
-          on-scroll-up = "hyprctl dispatch workspace m+1";
-          on-scroll-down = "hyprctl dispatch workspace m-1";
-        };
+        "wlr/workspaces" = wlr_workspaces;
+        "hyprland/workspaces" = lib.attrsets.mergeAttrsList [
+          wlr_workspaces
+          {
+            on-scroll-up = "hyprctl dispatch workspace m+1";
+            on-scroll-down = "hyprctl dispatch workspace m-1";
+          }
+        ];
         "sway/window" = wlr_window;
         "hyprland/window" = wlr_window;
         "custom/checkupdates" = {
@@ -126,42 +135,61 @@
         memory.interval = 1;
         temperature = {
           interval = 1;
-          format-icons = [ "" "" "" "" "" "" ];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
           hwmon-path-abs =
             if (builtins.pathExists "/sys/devices/pci0000:00/0000:00:18.3/hwmon") then
               "/sys/devices/pci0000:00/0000:00:18.3/hwmon"
             else
-              lib.mkIf (builtins.pathExists /sys/devices/platform/coretemp.0/hwmon)
-                "/sys/devices/platform/coretemp.0/hwmon";
+              lib.mkIf (builtins.pathExists /sys/devices/platform/coretemp.0/hwmon) "/sys/devices/platform/coretemp.0/hwmon";
           input-filename = "temp1_input";
           critical-temperature = 90;
         };
         backlight = {
           scroll-step = 5;
           # format-icons = [ "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ];
-          format-icons = [ "󰛩" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨" ];
+          format-icons = [
+            "󰛩"
+            "󱩎"
+            "󱩏"
+            "󱩐"
+            "󱩑"
+            "󱩒"
+            "󱩓"
+            "󱩔"
+            "󱩕"
+            "󱩖"
+            "󰛨"
+          ];
         };
         pulseaudio = {
           on-click-right = "qpwgraph";
           on-click-middle = "easyeffects";
         };
       };
-    style = /*css*/ ''
-      @import "/etc/xdg/waybar/style.css" /* layer(default) */;
+    style = # css
+      ''
+        @import "/etc/xdg/waybar/style.css" /* layer(default) */;
 
-      * {
-          /* `otf-font-awesome` is required to be installed for icons */
-          font-family: "Quicksand", "Symbols Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Klee One SemiBold", "IPAexGothic", Helvetica, Arial, sans-serif;
-      }
+        * {
+            /* `otf-font-awesome` is required to be installed for icons */
+            font-family: "Quicksand", "Symbols Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Klee One SemiBold", "IPAexGothic", Helvetica, Arial, sans-serif;
+        }
 
-      window#waybar {
-          background-color: rgba(0, 0, 0, 0.7);
-      }
+        window#waybar {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
 
-      #workspaces button.active {
-          background-color: #64727D;
-          box-shadow: inset 0 -3px #ffffff;
-      }
-    '';
+        #workspaces button.active {
+            background-color: #64727D;
+            box-shadow: inset 0 -3px #ffffff;
+        }
+      '';
   };
 }
