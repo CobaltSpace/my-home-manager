@@ -16,6 +16,7 @@ let
         right
         ;
       window.titlebar = false;
+      floating.titlebar = false;
       gaps = {
         smartGaps = true;
         smartBorders = "on";

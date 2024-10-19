@@ -7,14 +7,20 @@
 {
   wayland.windowManager.sway = {
     enable = true;
-    package = lib.mkIf (builtins.pathExists /usr/bin/sway) null;
-    # (
-    #   pkgs.runCommandLocal "system-sway" { } ''
-    #     mkdir -p $out/bin
-    #     ln -s /usr/bin/sway $out/bin/
-    #   ''
-    # );
-    extraConfigEarly = "set $Locker loginctl lock-session";
+    package =
+      lib.mkIf (builtins.pathExists /usr/bin/sway) # null;
+        (
+          pkgs.runCommandLocal "system-sway" { } ''
+            mkdir -p $out/bin
+            # ln -s /usr/bin/sway $out/bin/
+            ln -s /usr/bin/swaymsg $out/bin/
+          ''
+        );
+    extraConfigEarly = lib.strings.concatLines [
+      # "include /etc/sway/config.d/*"
+      "set $Locker loginctl lock-session"
+    ];
+    checkConfig = !builtins.pathExists /usr/bin/sway;
     config = {
       keybindings =
         let
@@ -49,14 +55,16 @@
           "${modifier}+KP_Up" = "seat - cursor move  0 -1";
           "${modifier}+KP_Prior" = "seat - cursor move  1 -1";
         };
-      bars = [ { command = "waybar"; } ];
+      bars = [ ];
       startup = [
         { command = ". ${config.xdg.configHome}/sway/vars.env && dex -ae sway"; }
         { command = "swaync"; }
-        { command = "systemctl --user stop xdg-desktop-portal-gtk.service"; }
+        # { command = "systemctl --user stop xdg-desktop-portal-gtk.service"; }
 
         # { command = "swayidle -w"; }
         { command = "hypridle"; }
+
+        { command = "\"sh -c 'until waybar; do true; done'\""; }
       ];
       seat.seat0.xcursor_theme = "CG";
       input = {
@@ -72,9 +80,9 @@
       };
       floating.criteria = [
         {
-          app_id = "^(org.kde.kruler|org.gnome.Calculator|org.gnome.clocks|pqiv|yad|Tor Browser|qalculate-gtk|io.github.Qalculate.qalculate-qt)$";
+          app_id = "^(org.kde.kruler|org.gnome.Calculator|org.gnome.clocks|pqiv|yad|Tor Browser|qalculate-gtk|io.github.Qalculate.qalculate-qt|hyprland-share-picker)$";
         }
-        { class = "^(steam|steam_app_438100)$"; }
+        { class = "^(steam_app_438100)$"; }
         {
           class = "^itunes.exe$";
           title = "^((\w+ )+Info|MiniPlayer)$";
