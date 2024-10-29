@@ -6,6 +6,20 @@ let
   up = "k";
   right = "l";
   mode_system = "System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown";
+  workspaces = {
+    "1" = "1:一";
+    "2" = "2:二";
+    "3" = "3:三";
+    "4" = "4:四";
+    "5" = "5:五";
+    "6" = "6:六";
+    "7" = "7:七";
+    "8" = "8:八";
+    "9" = "9:九";
+    "0" = "10:十";
+    minus = "11:";
+    equal = "12:";
+  };
   i3sway = {
     config = {
       inherit
@@ -22,6 +36,7 @@ let
         smartBorders = "on";
         inner = 5;
       };
+      defaultWorkspace = "workspace number ${workspaces."1"}";
       keybindings = lib.attrsets.mergeAttrsList [
         {
           # Move your focus around
@@ -99,28 +114,12 @@ let
           "--locked XF86AudioNext" = "exec playerctl next       -i firefox || xdotool search --class itunes.exe key XF86AudioNext";
           "--locked XF86AudioPrev" = "exec playerctl previous   -i firefox || xdotool search --class itunes.exe key XF86AudioPrev";
         }
-        (lib.attrsets.concatMapAttrs
-          (name: value: {
-            # Switch to workspace
-            "${modifier}+${name}" = "workspace number ${value}";
-            # Move focused container to workspace
-            "${modifier}+Shift+${name}" = "move container to workspace number ${value}";
-          })
-          {
-            "1" = "1:一";
-            "2" = "2:二";
-            "3" = "3:三";
-            "4" = "4:四";
-            "5" = "5:五";
-            "6" = "6:六";
-            "7" = "7:七";
-            "8" = "8:八";
-            "9" = "9:九";
-            "0" = "10:十";
-            minus = "11:";
-            equal = "12:";
-          }
-        )
+        (lib.attrsets.concatMapAttrs (name: value: {
+          # Switch to workspace
+          "${modifier}+${name}" = "workspace number ${value}";
+          # Move focused container to workspace
+          "${modifier}+Shift+${name}" = "move container to workspace number ${value}";
+        }) workspaces)
       ];
       startup = [ { command = "autotiling"; } ];
       modes = {

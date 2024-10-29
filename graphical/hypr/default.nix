@@ -45,7 +45,7 @@
     settings = {
       background = {
         # monitor =
-        path = "/usr/share/hyprland/wall2.png"; # only png supported for now
+        path = "/usr/share/hypr/wall2.png"; # only png supported for now
         color = "rgba(0, 71, 171, 1.0)";
 
         # all these options are taken from hyprland, see https://wiki.hyprland.org/Configuring/Variables/#blur for explanations
