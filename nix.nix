@@ -7,6 +7,7 @@
     };
   };
   nixpkgs.config.allowUnfree = true;
+  programs.nh.enable = true;
   home.packages = with pkgs; [
     nixd
     nixfmt-rfc-style

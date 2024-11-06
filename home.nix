@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   imports = [
     # <catppuccin/modules/home-manager>
 
@@ -12,7 +13,7 @@
 
     ./local.nix
   ];
-  targets.genericLinux.enable = ! builtins.pathExists /etc/nixos;
+  targets.genericLinux.enable = !builtins.pathExists /etc/nixos;
   home = {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
@@ -29,15 +30,28 @@
     stateVersion = "23.11"; # Please read the comment before changing.
 
     sessionVariables = {
-      XCURSOR_PATH = lib.mkIf (config.targets.genericLinux.enable && builtins.isNull config.home.pointerCursor)
-        (lib.mkForce "${config.xdg.dataHome}/icons:${config.home.homeDirectory}/icons:/usr/share/icons:/usr/share/pixmaps");
+      XCURSOR_PATH =
+        lib.mkIf (config.targets.genericLinux.enable && builtins.isNull config.home.pointerCursor)
+          (
+            lib.mkForce "${config.xdg.dataHome}/icons:${config.home.homeDirectory}/icons:/usr/share/icons:/usr/share/pixmaps"
+          );
       env_sources = ''''${env_sources+$env_sources,}home-manager'';
     };
+
+    preferXdgDirectories = true;
   };
+
+  xdg.userDirs = {
+    enable = true;
+    extraConfig = {
+      XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   services.home-manager.autoUpgrade = {
     enable = true;
-    frequency = "minutely";
+    frequency = "hourly";
   };
 }

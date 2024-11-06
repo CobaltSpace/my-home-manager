@@ -39,8 +39,11 @@
     ping = "prettyping --nolegend";
 
     doom = "nice -n 19 doom";
-    lofi = "mpv 'ytdl://jfKfPfyJRdk'";
-    synthwave = "mpv 'ytdl://4xDzrJKXOOY'";
+    lofi = "mpv --ytdl-format=ba 'ytdl://jfKfPfyJRdk'";
+    asianlofi = "mpv --ytdl-format=ba 'ytdl://Na0w3Mz46GA'";
+    synthwave = "mpv --ytdl-format=ba 'ytdl://4xDzrJKXOOY'";
+    lofirain = "mpv --ytdl-format=ba 'ytdl://-OekvEFm1lo'";
+
 
     neovide = "neovide --no-tabs --no-fork";
 

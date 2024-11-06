@@ -3,7 +3,7 @@
     enable = true;
     package = lib.mkIf (builtins.pathExists /usr/bin/alacritty) pkgs.emptyDirectory;
     settings = {
-      import = [
+      general.import = [
         "${pkgs.alacritty-theme}/catppuccin.toml"
       ];
       colors.primary.background = "#000000";
