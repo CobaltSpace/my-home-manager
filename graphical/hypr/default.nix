@@ -5,6 +5,9 @@
   ...
 }:
 {
+  imports = [
+    ./hyprland.nix
+  ];
   systemd.user.services.hypridle = lib.mkForce { };
   services.hypridle = {
     enable = true;
@@ -14,7 +17,7 @@
         lock_cmd = "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.
         unlock_cmd = "pidof hyprlock || hyprlock && pkill -USR1 hyprlock";
         before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
-        after_sleep_cmd = "hyprctl dispatch dpms on || swaymsg 'output * dpms on'"; # to avoid having to press a key twice to turn on the display.
+        after_sleep_cmd = "hyprctl dispatch dpms on || swaymsg 'output * power on'"; # to avoid having to press a key twice to turn on the display.
       };
       listener = [
         {
@@ -28,13 +31,13 @@
         }
         {
           timeout = 380; # 5.5min
-          on-timeout = "hyprctl dispatch dpms off || swaymsg 'output * dpms off'"; # screen off when timeout has passed
-          on-resume = "hyprctl dispatch dpms on || swaymsg 'output * dpms on'"; # screen on when activity is detected after timeout has fired.
+          on-timeout = "hyprctl dispatch dpms off || swaymsg 'output * power off'"; # screen off when timeout has passed
+          on-resume = "hyprctl dispatch dpms on || swaymsg 'output * power on'"; # screen on when activity is detected after timeout has fired.
         }
         {
           timeout = 80; # .5min
-          on-timeout = "pidof hyprlock && { hyprctl dispatch dpms off || swaymsg 'output * dpms on' }"; # screen off when timeout has passed
-          on-resume = "hyprctl dispatch dpms on || swaymsg 'output * dpms on'"; # screen on when activity is detected after timeout has fired.
+          on-timeout = "pidof hyprlock && { hyprctl dispatch dpms off || swaymsg 'output * power on' }"; # screen off when timeout has passed
+          on-resume = "hyprctl dispatch dpms on || swaymsg 'output * power on'"; # screen on when activity is detected after timeout has fired.
         }
       ];
     };
