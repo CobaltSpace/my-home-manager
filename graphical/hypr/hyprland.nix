@@ -14,10 +14,7 @@
     ];
     settings = {
       source = [
-        "./hyprland.conf.d/output.conf"
-
         "./hyprland.conf.d/locker.conf"
-        "./hyprland.conf.d/autostart.conf"
 
         "./hyprland.conf.d/keybinds.conf"
         "./hyprland.conf.d/windows.conf"
@@ -42,7 +39,7 @@
 
         touchpad.natural_scroll = true;
       };
-      gesture = {
+      gestures = {
         workspace_swipe = true;
         workspace_swipe_forever = true;
         workspace_swipe_fingers = 4;
@@ -65,6 +62,35 @@
       "$right" = "l";
 
       "$Locker" = "loginctl lock-session";
+      bind = [
+      ];
+      bindl = [
+        ", XF86MonBrightnessUp  , exec, brightnessctl s 5%+"
+        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+        " SHIFT, XF86MonBrightnessUp  , exec, brightnessctl s 1%+"
+        " SHIFT, XF86MonBrightnessDown, exec, brightnessctl s 1%-"
+      ];
+      exec-once = [
+        "hyprctl setcursor CG 24"
+
+        "swaync"
+
+        "dex -ae hyprland"
+
+        # "until waybar; do done"
+        "waybar"
+
+        # "swayidle"
+        "hypridle"
+
+        # "systemctl --user stop xdg-desktop-portal-gtk.service"
+        # "systemctl --user stop xdg-desktop-portal-gnome.service"
+
+        ''wl-paste -t text -w sh -c '[ "$(xclip -selection clipboard -o)" = "$(wl-paste -n)" ] || xclip -selection clipboard' ''
+        # "wl-paste -t text -w sh -c 'xclip -selection clipboard -o < /dev/null > /dev/null 2> /dev/null || xclip -selection clipboard'"
+
+        "../acpid.sh"
+      ];
     };
   };
 }

@@ -75,7 +75,6 @@
           natural_scroll = "enable";
           middle_emulation = "enable";
         };
-        "type:tablet_tool".map_to_output = "$main_display";
         "1386:827:Wacom_Intuos_S_2_Pen".map_from_region = "0.0x0.0 1.0x0.9";
       };
       floating.criteria = [
