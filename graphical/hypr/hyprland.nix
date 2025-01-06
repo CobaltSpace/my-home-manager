@@ -5,6 +5,7 @@
     package = lib.mkIf (builtins.pathExists /usr/bin/hyprland) (
       lib.makeOverridable ({ ... }: pkgs.emptyDirectory) { }
     );
+    systemd.enable = false;
     importantPrefixes = [
       "$"
       "bezier"

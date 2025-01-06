@@ -3,8 +3,8 @@
     [
       vale
       xdg-ninja
-      animdl
-      adl
+      # animdl
+      # adl
       mcstatus
       # wlx-overlay-s
       # hyprland
