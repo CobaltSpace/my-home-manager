@@ -40,6 +40,16 @@
 
         touchpad.natural_scroll = true;
       };
+      device = [
+        {
+          name = "wlxoverlay-s-keyboard-mouse-hybrid-thing-1";
+          natural_scroll = true;
+        }
+        {
+          name = "epic-mouse-v1";
+          sensitivity = -0.5;
+        }
+      ];
       gestures = {
         workspace_swipe = true;
         workspace_swipe_forever = true;
