@@ -3,7 +3,13 @@
   wayland.windowManager.hyprland = {
     enable = true;
     package = lib.mkIf (builtins.pathExists /usr/bin/hyprland) (
-      lib.makeOverridable ({ ... }: pkgs.emptyDirectory) { }
+      lib.makeOverridable (
+        { ... }:
+        pkgs.runCommandLocal "system-hyprctl" { } ''
+          mkdir -p $out/bin
+          ln -s /usr/bin/hyprctl $out/bin/
+        ''
+      ) { }
     );
     systemd.enable = false;
     importantPrefixes = [
@@ -43,12 +49,12 @@
       device = [
         {
           name = "wlxoverlay-s-keyboard-mouse-hybrid-thing-1";
-          natural_scroll = true;
+          natural_scroll = false;
         }
-        {
-          name = "epic-mouse-v1";
-          sensitivity = -0.5;
-        }
+        # {
+        #   name = "epic-mouse-v1";
+        #   sensitivity = -0.5;
+        # }
       ];
       gestures = {
         workspace_swipe = true;
