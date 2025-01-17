@@ -100,8 +100,7 @@
         # "swayidle"
         "hypridle"
 
-        # "systemctl --user stop xdg-desktop-portal-gtk.service"
-        # "systemctl --user stop xdg-desktop-portal-gnome.service"
+        "systemctl --user restart xdg-desktop-portal-gtk.service && systemctl --user restart xdg-desktop-portal.service"
 
         ''wl-paste -t text -w sh -c '[ "$(xclip -selection clipboard -o)" = "$(wl-paste -n)" ] || xclip -selection clipboard' ''
         # "wl-paste -t text -w sh -c 'xclip -selection clipboard -o < /dev/null > /dev/null 2> /dev/null || xclip -selection clipboard'"
