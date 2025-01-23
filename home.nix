@@ -6,6 +6,7 @@
     ./shell
     ./graphical
 
+    ./keybase.nix
     ./miscpkgs.nix
     ./nix.nix
     ./node.nix
