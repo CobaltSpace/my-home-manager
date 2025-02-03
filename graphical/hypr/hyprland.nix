@@ -30,7 +30,7 @@
         "_JAVA_AWT_WM_NONREPARENTING,1"
         "QT_QPA_PLATFORMTHEME,qt5ct"
         "BROWSER,firefox"
-        "TERMINAL,alacritty"
+        "TERMINAL,ghostty"
         # "AMD_VULKAN_ICD,RADV"
       ];
       general = {
