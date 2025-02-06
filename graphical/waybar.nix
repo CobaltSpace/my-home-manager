@@ -169,6 +169,7 @@
           ];
         };
         pulseaudio = {
+          on-click = "pavucontrol-qt";
           on-click-right = "qpwgraph";
           on-click-middle = "easyeffects";
         };

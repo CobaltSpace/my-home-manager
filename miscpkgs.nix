@@ -14,6 +14,11 @@
       unimatrix
       postgres-lsp
       catppuccin
+
+      cmake-language-server
+      cmake-format
+      cmake-lint
+
       # zoom-us
 
       # # It is sometimes useful to fine-tune packages, for example, by applying
