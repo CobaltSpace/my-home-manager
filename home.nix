@@ -9,8 +9,7 @@
     ./keybase.nix
     ./miscpkgs.nix
     ./nix.nix
-    ./node.nix
-    # ./system.nix
+    ./programming
 
     ./local.nix
   ];
