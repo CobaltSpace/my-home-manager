@@ -30,22 +30,8 @@
     stateVersion = "23.11"; # Please read the comment before changing.
 
     sessionVariables = with config.home.sessionVariables;{
-      XCURSOR_PATH =
-        lib.mkIf (config.targets.genericLinux.enable && builtins.isNull config.home.pointerCursor)
-          (
-            lib.mkForce "${config.xdg.dataHome}/icons:${config.home.homeDirectory}/icons:/usr/share/icons:/usr/share/pixmaps"
-          );
-
-      QT_IM_MODULES = "wayland;fcitx;ibus";
-      QT_IM_MODULE = "fcitx";
-      GTK_IM_MODULE = "fcitx";
-      XMODIFIERS = "@im=fcitx";
-      SDL_IM_MODULE = "fcitx";
-
-      TERMINAL = "ghostty";
       EDITOR = "nvim";
       SUDO_EDITOR = EDITOR;
-      VISUAL = "neovide --no-tabs --no-fork";
       PAGER = "bat";
       MANPAGER = "bat -p";
 
@@ -61,7 +47,7 @@
       PARALLEL_HOME = "${config.xdg.configHome}/parallel";
       SCREENRC = "${config.xdg.configHome}/screenrc";
       WINEPREFIX = "${config.xdg.dataHome}/wineprefixes/default";
-      DISTCC_DIR = "/tmp/distcc";
+      DISTCC_DIR = "$(systemd-path user-runtime)/distcc";
       # TEXMFCNF="${config.xdg.dataHome}/texmf:";
       TEXMFHOME = "${config.xdg.dataHome}/texmf";
       TEXMFVAR = "${config.xdg.cacheHome}/texlive/texmf-var";

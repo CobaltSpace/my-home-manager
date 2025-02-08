@@ -63,13 +63,15 @@
       misc = {
         allow_session_lock_restore = true;
         force_default_wallpaper = 3;
+        vrr = true;
       };
       dwindle = {
         pseudotile = true;
         preserve_split = true;
       };
       exec-once = [
-        "hyprctl setcursor CG 24"
+        # "hyprctl setcursor CG 24"
+        "hyprctl setcursor capitaine-cursors-light 24"
 
         "swaync"
 
@@ -77,6 +79,7 @@
 
         # "until waybar; do done"
         "waybar"
+        # "ashell"
 
         # "swayidle"
         "hypridle"
@@ -149,14 +152,23 @@
         # }
 
       ];
+      xwayland.force_zero_scaling = true;
+      experimental = {
+        # hdr = true;
+        xx_color_management_v4 = true;
+        # wide_color_gamut = true;
+      };
+      render.direct_scanout = 1;
       bindl = [
         ", XF86MonBrightnessUp  , exec, brightnessctl s 5%+"
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
-        " SHIFT, XF86MonBrightnessUp  , exec, brightnessctl s 1%+"
-        " SHIFT, XF86MonBrightnessDown, exec, brightnessctl s 1%-"
+        "SHIFT, XF86MonBrightnessUp  , exec, brightnessctl s 1%+"
+        "SHIFT, XF86MonBrightnessDown, exec, brightnessctl s 1%-"
 
-        ", XF86AudioRaiseVolume, exec, amixer -D pulse sset Master 2%+ unmute"
-        ", XF86AudioLowerVolume, exec, amixer -D pulse sset Master 2%- unmute"
+        ", XF86AudioRaiseVolume, exec, amixer -D pulse sset Master 5%+ unmute"
+        ", XF86AudioLowerVolume, exec, amixer -D pulse sset Master 5%- unmute"
+        "SHIFT, XF86AudioRaiseVolume, exec, amixer -D pulse sset Master 1%+ unmute"
+        "SHIFT, XF86AudioLowerVolume, exec, amixer -D pulse sset Master 1%- unmute"
         ", XF86AudioMute,        exec, amixer -D pulse sset Master toggle"
 
         ", XF86AudioPlay,  exec, playerctl play-pause -i firefox || xdotool search --class itunes.exe key --clearmodifiers XF86AudioPlay"

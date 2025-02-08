@@ -6,7 +6,7 @@
 }:
 {
   wayland.windowManager.sway = {
-    enable = true;
+    # enable = true;
     package =
       lib.mkIf (builtins.pathExists /usr/bin/sway) # null;
         (

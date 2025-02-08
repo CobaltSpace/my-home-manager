@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   programs.alacritty = {
-    enable = true;
+    # enable = true;
     package = lib.mkIf (builtins.pathExists /usr/bin/alacritty) pkgs.emptyDirectory;
     settings = {
       general.import = [
