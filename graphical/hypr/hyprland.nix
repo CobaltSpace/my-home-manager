@@ -86,12 +86,15 @@
 
         "systemctl --user restart xdg-desktop-portal-gtk.service && systemctl --user restart xdg-desktop-portal.service"
 
+        "systemctl --user start hyprpolkitagent.service"
+
         # ''wl-paste -t text -w sh -c '[ "$(xclip -selection clipboard -o)" = "$(wl-paste -n)" ] || xclip -selection clipboard' ''
         # "wl-paste -t text -w sh -c 'xclip -selection clipboard -o < /dev/null > /dev/null 2> /dev/null || xclip -selection clipboard'"
 
         "../acpid.sh"
       ];
       windowrulev2 = [
+        ''noborder,                            floating:0,                  onworkspace:w[tv1]''
         # ''rounding 3,                        class:^itunes.exe$''
         # ''tile,                              class:^itunes.exe$,          title:^iTunes$''
         # ''nofullscreenrequest,               class:^itunes.exe$,          title:^iTunes$''
@@ -134,6 +137,9 @@
 
         ''stayfocused,                         class:^Keybase$''
 
+        ''stayfocused,                         class:^zoom$,                title:^menu window$''
+        ''noblur,                              class:^zoom$''
+
         ''idleinhibit always,                  class:^vrmonitor$''
         # ''idleinhibit focus,                 class:^(gamescope|steam_app_(858210|253030))$''
         ''idleinhibit focus,                   class:^(steam_app_(438100|1468260)|virt-manager)$''
@@ -145,13 +151,12 @@
 
         ''float,                               class:^mpv$,                 xwayland:1''
         ''nomaxsize,                           class:^mpv$,                 xwayland:1''
-
-        # misc {
-        # #  enable_swallow = true
-        #   swallow_regex = ^Alacritty$
-        # }
-
       ];
+      # misc {
+      # #  enable_swallow = true
+      #   swallow_regex = ^Alacritty$
+      # }
+      # workspace = [ "w[v1], border:false" ];
       xwayland.force_zero_scaling = true;
       experimental = {
         # hdr = true;
@@ -293,5 +298,6 @@
 
       submap = reset
     '';
+    plugins = [];
   };
 }

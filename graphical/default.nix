@@ -37,4 +37,20 @@
 
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
   };
+  home.packages = with pkgs; [
+    quicksand
+    (lib.mkIf (!lib.pathExists /usr/share/fonts/OTF/ipaexg.ttf) ipaexfont)
+    (runCommand "klee-one" { } ''
+      mkdir -p $out/share
+      ln -s ${
+        fetchFromGitHub {
+          owner = "fontworks-fonts";
+          repo = "Klee";
+          tag = "Version1.000";
+          # rev = "v${version}";
+          hash = "sha256-zjiV6IeY/IdoqhrCJEze6sWo1+ZiDHlUNOm+PRhesaU=";
+        }
+      }/fonts $out/share
+    '')
+  ];
 }

@@ -2,6 +2,6 @@
   home.packages = with pkgs;
     [
       (config.lib.nixGL.wrap keybase-gui)
-      # (config.lib.nixGL.wrap vulkan-hdr-layer-kwin6)
+      (config.lib.nixGL.wrap vulkan-hdr-layer-kwin6)
     ];
 }
