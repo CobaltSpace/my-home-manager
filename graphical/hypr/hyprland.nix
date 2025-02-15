@@ -270,10 +270,10 @@
         # "$mainMod, P, pseudo,"      # dwindle
         # "$mainMod, J, togglesplit," # dwindle
 
-        ",       Print, exec, grimshot --notify save active"
-        "SHIFT, Print, exec, grimshot --notify save area"
-        "ALT,   Print, exec, grimshot --notify save output"
-        "CTRL,  Print, exec, grimshot --notify save window"
+        ",       Print, exec, grimblast --notify copysave active"
+        "SHIFT, Print, exec, grimblast --notify copysave area"
+        "ALT,   Print, exec, grimblast --notify copysave output"
+        "CTRL,  Print, exec, grimblast --notify copysave window"
 
         "SUPER ALT , q , submap , $submap_system"
       ];

@@ -7,6 +7,7 @@
 {
   imports = [
     ./alacritty.nix
+    ./chromium.nix
     ./ghostty.nix
     ./hypr
     ./i3sway
