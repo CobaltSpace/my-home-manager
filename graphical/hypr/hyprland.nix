@@ -24,7 +24,7 @@
       source = [ ];
       env = [
         "_JAVA_AWT_WM_NONREPARENTING,1"
-        "QT_QPA_PLATFORMTHEME,qt5ct"
+        "QT_QPA_PLATFORMTHEME,gtk3"
         "BROWSER,firefox"
         "TERMINAL,ghostty"
         # "AMD_VULKAN_ICD,RADV"
