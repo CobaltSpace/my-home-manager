@@ -29,21 +29,18 @@
     # release notes.
     stateVersion = "23.11"; # Please read the comment before changing.
 
-    sessionVariables = with config.home.sessionVariables;{
+    sessionVariables = with config.home.sessionVariables; {
       EDITOR = "nvim";
       SUDO_EDITOR = EDITOR;
       PAGER = "bat";
       MANPAGER = "bat -p";
 
       GOPATH = "${config.xdg.dataHome}/go";
-      CARGO_HOME = "${config.xdg.dataHome}/cargo";
-      RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
       FFMPEG_DATADIR = "${config.xdg.dataHome}/ffmpeg";
       AVCONV_DATADIR = FFMPEG_DATADIR;
       GNUPGHOME = "${config.xdg.dataHome}/gnupg";
       ICEAUTHORITY = "${config.xdg.cacheHome}/ICEauthority";
       MPLAYER_HOME = "${config.xdg.configHome}/mplayer";
-      NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npmrc";
       PARALLEL_HOME = "${config.xdg.configHome}/parallel";
       SCREENRC = "${config.xdg.configHome}/screenrc";
       WINEPREFIX = "${config.xdg.dataHome}/wineprefixes/default";
@@ -58,23 +55,26 @@
       ANDROID_HOME = "${config.xdg.dataHome}/android";
       CALCHISTFILE = "${config.xdg.cacheHome}/calc_history";
       NUGET_PACKAGES = "${config.xdg.cacheHome}/NuGetPackages                                                             ";
-      NVM_DIR = "${config.xdg.dataHome}/nvm";
       PASSWORD_STORE_DIR = "${config.xdg.dataHome}/pass";
-      PYTHONSTARTUP = "${config.xdg.configHome}/pythonrc";
       STACK_ROOT = "${config.xdg.dataHome}/stack";
       STACK_XDG = 1;
       GHCUP_USE_XDG_DIRS = 1;
-      GTK2_RC_FILES = "${config.xdg.configHome}/gtk-2.0/gtkrc:${config.xdg.configHome}/gtk-2.0/gtkrc.mine";
       LESSHISTFILE = "${config.xdg.stateHome}/less/history";
       ERRFILE = "${config.xdg.stateHome}/X11/xsession-errors";
       BUNDLE_USER_CACHE = "${config.xdg.cacheHome}/bundle";
       BUNDLE_USER_CONFIG = "${config.xdg.configHome}/bundle/config";
       BUNDLE_USER_PLUGIN = "${config.xdg.dataHome}/bundle";
 
-      PATH="$(systemd-path user-binaries):${config.xdg.configHome}/emacs/bin:${CARGO_HOME}/bin:${GOPATH}/bin:${config.xdg.dataHome}/npm/bin:~/.dotnet/tools:$PATH";
+      # PATH="$(systemd-path user-binaries):$PATH";
 
       env_sources = "\${env_sources+$env_sources,}home-manager";
     };
+    sessionPath = with config.home.sessionVariables; [
+      "$(systemd-path user-binaries)"
+      "${config.xdg.configHome}/emacs/bin"
+      "${GOPATH}/bin"
+      "~/.dotnet/tools"
+    ];
 
     preferXdgDirectories = true;
   };

@@ -1,8 +1,9 @@
 { ... }:
 {
   imports = [
-    ./node.nix
-    ./rust.nix
+    ./js.nix
     ./latex.nix
+    ./python.nix
+    ./rust.nix
   ];
 }

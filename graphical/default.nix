@@ -36,6 +36,8 @@
     TERMINAL = "ghostty";
     VISUAL = "neovide --no-tabs --no-fork";
 
+    GTK2_RC_FILES = "${config.xdg.configHome}/gtk-2.0/gtkrc:${config.xdg.configHome}/gtk-2.0/gtkrc.mine";
+
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
   };
   home.packages = with pkgs; [

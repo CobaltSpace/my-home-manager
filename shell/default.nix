@@ -63,7 +63,6 @@
   programs = {
     zoxide = {
       enable = true;
-      enableZshIntegration = true;
       package = lib.mkIf (builtins.pathExists /usr/bin/zoxide) (pkgs.runCommandLocal "system-zoxide" { } ''
         mkdir -p $out/bin
         ln -s /usr/bin/zoxide $out/bin/
