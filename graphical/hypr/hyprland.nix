@@ -73,18 +73,20 @@
         # "hyprctl setcursor CG 24"
         "hyprctl setcursor capitaine-cursors-light 24"
 
-        "uwsm app -- swaync"
+        "swaync"
+        # "uwsm app -- swaync"
 
-        # "dex -ae hyprland"
+        "dex -ae hyprland"
 
         # "until waybar; do done"
-        "uwsm app -- waybar"
+        "waybar"
+        # "uwsm app -- waybar"
         # "ashell"
 
         # "swayidle"
         "hypridle"
 
-        # "systemctl --user restart xdg-desktop-portal-gtk.service && systemctl --user restart xdg-desktop-portal.service"
+        "systemctl --user restart xdg-desktop-portal-gtk.service && systemctl --user restart xdg-desktop-portal.service"
 
         "systemctl --user start hyprpolkitagent.service"
 
@@ -196,16 +198,20 @@
       "$Locker" = "loginctl lock-session";
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        "$mainMod, Return, exec, uwsm app -- rofi-sensible-terminal"
+        "$mainMod, Return, exec, rofi-sensible-terminal"
+        # "$mainMod, Return, exec, uwsm app -- rofi-sensible-terminal"
         "$mainMod, w,      killactive,"
 
-        "$mainMod, Space, exec, rofi -show drun || uwsm app -- $(wofi --show drun --define=drun-print_desktop_file=true"
+        "$mainMod, Space, exec, rofi -show drun || wofi --show drun"
+        # "$mainMod, Space, exec, rofi -show drun || uwsm app -- $(wofi --show drun --define=drun-print_desktop_file=true)"
         # "$mainMod, x,     exec, env -u WAYLAND_DISPLAY rofi -show drun || wofi --show drun"
         # "$mainMod, Space, exec, wofi --show drun"
 
-        ", XF86Calculator, exec, uwsm app -- qalculate-qt"
+        ", XF86Calculator, exec, qalculate-qt"
+        # ", XF86Calculator, exec, uwsm app -- qalculate-qt"
 
-        "$mainMod, e, exec, uwsm app -- emacsclient -c"
+        "$mainMod, e, exec, emacsclient -c"
+        # "$mainMod, e, exec, uwsm app -- emacsclient -c"
 
         # "$mainMod CTRL, v, exec, wl-paste -n | wtype -"
         "$mainMod CTRL, v, exec, wl-paste -n | xdotool type --clearmodifiers --delay 50 --file -"
@@ -283,16 +289,16 @@
     extraConfig = ''
       submap = $submap_system
 
-      bind =,       l, exec,   uwsm app -- $Locker
+      bind =,       l, exec,   $Locker
       bind =,       l, submap, reset
-      # bind =,       e, exit,
-      bind =,       e, exec,   loginctl terminate-user ""
-      bind =,       s, exec,   uwsm app -- systemctl suspend
+      bind =,       e, exit,
+      # bind =,       e, exec,   loginctl terminate-user ""
+      bind =,       s, exec,   systemctl suspend
       bind =,       s, submap, reset
-      bind =,       h, exec,   uwsm app -- systemctl hibernate
+      bind =,       h, exec,   systemctl hibernate
       bind =,       h, submap, reset
-      bind =,       r, exec,   uwsm app -- reboot
-      bind = SHIFT, s, exec,   uwsm app -- shutdown now
+      bind =,       r, exec,   reboot
+      bind = SHIFT, s, exec,   shutdown now
 
       bind =, Return, submap, reset
       bind =, Escape, submap, reset

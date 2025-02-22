@@ -8,13 +8,13 @@
     extraConfig = {
       modi = "run,drun,ssh";
       show-icons = true;
-      # ssh-command= ''{terminal} -e /bin/sh -i -c "{ssh-client} {host}"'';
-      ssh-command = ''uwsm app -- {terminal} -e /bin/sh -i -c "{ssh-client} {host}"'';
-      # run-command= "/bin/sh -c '{cmd}'";
-      run-command = "uwsm app -- {cmd}";
+      ssh-command= ''{terminal} -e /bin/sh -i -c "{ssh-client} {host}"'';
+      # ssh-command = ''uwsm app -- {terminal} -e /bin/sh -i -c "{ssh-client} {host}"'';
+      run-command= "/bin/sh -c '{cmd}'";
+      # run-command = "uwsm app -- {cmd}";
       # run-list-command= ". ~/.scripts/zsh_aliases_functions.sh";
-      # run-shell-command= ''{terminal} -e /usr/bin/zsh -i -c "{cmd}; read -n 1 -s"'';
-      run-shell-command = ''uwsm app -- {terminal} -e /usr/bin/zsh -i -c "{cmd}; read -n 1 -s"'';
+      run-shell-command= ''{terminal} -e /usr/bin/zsh -i -c "{cmd}; read -n 1 -s"'';
+      # run-shell-command = ''uwsm app -- {terminal} -e /usr/bin/zsh -i -c "{cmd}; read -n 1 -s"'';
       sidebar-mode = true;
     };
   };
