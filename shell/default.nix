@@ -44,9 +44,6 @@
     synthwave = "mpv --ytdl-format=ba 'ytdl://4xDzrJKXOOY' --no-resume-playback";
     lofirain = "mpv --ytdl-format=ba 'ytdl://-OekvEFm1lo' --no-resume-playback";
 
-
-    neovide = "neovide --no-tabs --no-fork";
-
     mpvmic = "mpv --profile=microphone";
 
     ":q" = "exit";

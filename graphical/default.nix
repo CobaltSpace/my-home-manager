@@ -12,6 +12,7 @@
     ./hypr
     ./i3sway
     ./miscpkgs.nix
+    ./neovide.nix
     ./nixGL.nix
     ./rofi.nix
     ./swaync.nix
@@ -29,14 +30,14 @@
 
     QT_IM_MODULES = "wayland;fcitx;ibus";
     QT_IM_MODULE = "fcitx";
-    GTK_IM_MODULE = "fcitx";
+    # GTK_IM_MODULE = "fcitx";
     XMODIFIERS = "@im=fcitx";
     SDL_IM_MODULE = "fcitx";
 
     TERMINAL = "ghostty";
     VISUAL = "neovide --no-tabs --no-fork";
 
-    GTK2_RC_FILES = "${config.xdg.configHome}/gtk-2.0/gtkrc:${config.xdg.configHome}/gtk-2.0/gtkrc.mine";
+    GTK2_RC_FILES = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
   };
