@@ -39,12 +39,6 @@
     ping = "prettyping --nolegend";
 
     doom = "nice -n 19 doom";
-    lofi = "mpv --ytdl-format=ba 'ytdl://jfKfPfyJRdk' --no-resume-playback";
-    asianlofi = "mpv --ytdl-format=ba 'ytdl://Na0w3Mz46GA' --no-resume-playback";
-    synthwave = "mpv --ytdl-format=ba 'ytdl://4xDzrJKXOOY' --no-resume-playback";
-    lofirain = "mpv --ytdl-format=ba 'ytdl://-OekvEFm1lo' --no-resume-playback";
-
-    mpvmic = "mpv --profile=microphone";
 
     ":q" = "exit";
     ":wq" = "exit";

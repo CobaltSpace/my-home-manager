@@ -35,6 +35,7 @@
       PAGER = "bat";
       MANPAGER = "bat -p";
 
+      ABDUCO_SOCKET_DIR="\${XDG_RUNTIME_DIR:-/run/user/$UID}";
       GOPATH = "${config.xdg.dataHome}/go";
       FFMPEG_DATADIR = "${config.xdg.dataHome}/ffmpeg";
       AVCONV_DATADIR = FFMPEG_DATADIR;

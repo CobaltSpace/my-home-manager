@@ -12,6 +12,7 @@
     ./hypr
     ./i3sway
     ./miscpkgs.nix
+    ./mpv.nix
     ./neovide.nix
     ./nixGL.nix
     ./rofi.nix

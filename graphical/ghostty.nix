@@ -9,7 +9,7 @@
       background = "black";
       background-opacity = 0.7;
       # font-size = 10;
+      # shell-integration-features = "cursor,sudo,no-title";
     };
-    enableZshIntegration = true;
   };
 }

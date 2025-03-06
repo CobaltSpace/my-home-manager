@@ -52,7 +52,7 @@
       };
       xdg.configFile = {
         "chromium-flags.conf".text = renderFlags config.programs.chromium.flags;
-        # "brave-flags.conf".text = renderFlags config.programs.brave.flags;
+        "brave-flags.conf".text = renderFlags config.programs.brave.flags;
       };
       home.file.".var/app/com.brave.Browser/config/brave-flags.conf".text =
         renderFlags config.programs.brave.flags;

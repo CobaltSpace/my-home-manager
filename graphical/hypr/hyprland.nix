@@ -21,7 +21,7 @@
       "source"
     ];
     settings = {
-      source = [ ];
+      source = [ "./experimental.conf" ];
       env = [
         "_JAVA_AWT_WM_NONREPARENTING,1"
         "QT_QPA_PLATFORMTHEME,gtk3"
@@ -64,14 +64,22 @@
         allow_session_lock_restore = true;
         force_default_wallpaper = 3;
         vrr = true;
+        enable_swallow = true;
+        swallow_regex = lib.strings.concatStringsSep "|" [
+          ''^Alacritty$''
+          ''^com\.mitchellh.ghostty$''
+        ];
+        swallow_exception_regex = lib.strings.concatStringsSep "|" [
+          ''.*wev.*''
+        ];
       };
       dwindle = {
         pseudotile = true;
         preserve_split = true;
       };
       exec-once = [
-        # "hyprctl setcursor CG 24"
-        "hyprctl setcursor capitaine-cursors-light 24"
+        # "hyprctl setcursor CG 37"
+        "hyprctl setcursor capitaine-cursors 24"
 
         "swaync"
         # "uwsm app -- swaync"
@@ -154,10 +162,6 @@
         ''float,                               class:^mpv$,                 xwayland:1''
         ''nomaxsize,                           class:^mpv$,                 xwayland:1''
       ];
-      # misc {
-      # #  enable_swallow = true
-      #   swallow_regex = ^Alacritty$
-      # }
       # workspace = [ "w[v1], border:false" ];
       xwayland.force_zero_scaling = true;
       experimental = {
@@ -177,6 +181,7 @@
         "SHIFT, XF86AudioRaiseVolume, exec, amixer -D pulse sset Master 1%+ unmute"
         "SHIFT, XF86AudioLowerVolume, exec, amixer -D pulse sset Master 1%- unmute"
         ", XF86AudioMute,        exec, amixer -D pulse sset Master toggle"
+        ", XF86AudioMicMute,        exec, amixer -D pulse sset Capture toggle"
 
         ", XF86AudioPlay,  exec, playerctl play-pause -i firefox || xdotool search --class itunes.exe key --clearmodifiers XF86AudioPlay"
         ", XF86AudioPause, exec, playerctl pause      -i firefox || xdotool search --class itunes.exe key --clearmodifiers XF86AudioPause"
