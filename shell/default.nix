@@ -54,7 +54,7 @@
   programs = {
     zoxide = {
       enable = true;
-      package = lib.mkIf (builtins.pathExists /usr/bin/zoxide) (pkgs.runCommandLocal "system-zoxide" { } ''
+      package = lib.mkIf (builtins.pathExists /usr/bin/zoxide) (pkgs.runCommandLocal "system-zoxide" { meta.mainProgram = "zoxide"; } ''
         mkdir -p $out/bin
         ln -s /usr/bin/zoxide $out/bin/
       '');
