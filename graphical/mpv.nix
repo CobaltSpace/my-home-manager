@@ -30,6 +30,8 @@
       screenshot-jxl-distance = 0;
       screenshot-jxl-effort = 9;
 
+      term-title = "\${media-title} - mpv";
+
       # sf = "scaletempo2";
     };
     profiles = {
@@ -58,6 +60,7 @@
         panscan = 1;
         wayland-app-id = "mpv-bg";
         x11-name = "mpv-bg";
+        term-title = "\${media-title} - mpv-bg";
       };
     };
     bindings = {
@@ -75,10 +78,14 @@
 
     lofi = "mpv 'ytdl://jfKfPfyJRdk' --profile=lofi";
     asianlofi = "mpv 'ytdl://Na0w3Mz46GA' --profile=lofi";
+    sadlofi = "mpv 'ytdl://P6Segk8cr-c' --profile=lofi";
+
     synthwave = "mpv 'ytdl://4xDzrJKXOOY' --profile=lofi";
+    darklofi = "mpv 'ytdl://S_MOd40zlYU' --profile=lofi";
+
     lofirain = "mpv 'ytdl://-OekvEFm1lo' --profile=lofi";
 
     mpvmic = "mpv --profile=microphone";
   };
-  wayland.windowManager.hyprland.settings.plugins.hyprwinwrap.class = [ "mpv-bg" ];
+  wayland.windowManager.hyprland.settings.plugin.hyprwinwrap.class = [ "mpv-bg" ];
 }

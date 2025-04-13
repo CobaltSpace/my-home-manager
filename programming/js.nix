@@ -8,7 +8,7 @@
     sessionPath = [
       "${config.xdg.dataHome}/npm/bin"
     ];
-    packages = with pkgs;[
+    packages = with pkgs; lib.mkIf (!builtins.pathExists /usr/bin/biome) [
       biome
     ];
   };

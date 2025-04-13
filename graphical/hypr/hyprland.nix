@@ -71,6 +71,7 @@
         ];
         swallow_exception_regex = lib.strings.concatStringsSep "|" [
           ''.*wev.*''
+          ''.*mpv-bg$''
         ];
       };
       dwindle = {
@@ -81,10 +82,9 @@
         # "hyprctl setcursor CG 37"
         "hyprctl setcursor capitaine-cursors 24"
 
-        "swaync"
-        # "uwsm app -- swaync"
+        "if uwsm check is-active; then uwsm app -- swaync; else swaync; fi"
 
-        "dex -ae hyprland"
+        "uwsm check is-active || dex -ae hyprland"
 
         # "until waybar; do done"
         "waybar"
@@ -94,16 +94,18 @@
         # "swayidle"
         "hypridle"
 
-        "systemctl --user restart xdg-desktop-portal-gtk.service && systemctl --user restart xdg-desktop-portal.service"
+        "if not uwsm check is-active; then systemctl --user restart xdg-desktop-portal-gtk.service && systemctl --user restart xdg-desktop-portal.service; fi"
 
         "systemctl --user start hyprpolkitagent.service"
+
+        "hyprpm reload"
 
         # ''wl-paste -t text -w sh -c '[ "$(xclip -selection clipboard -o)" = "$(wl-paste -n)" ] || xclip -selection clipboard' ''
         # "wl-paste -t text -w sh -c 'xclip -selection clipboard -o < /dev/null > /dev/null 2> /dev/null || xclip -selection clipboard'"
 
         # "../acpid.sh"
       ];
-      windowrulev2 = [
+      windowrule = [
         ''noborder,                            floating:0,                  onworkspace:w[tv1]''
         # ''rounding 3,                        class:^itunes.exe$''
         # ''tile,                              class:^itunes.exe$,          title:^iTunes$''
@@ -170,6 +172,9 @@
         # wide_color_gamut = true;
       };
       render.direct_scanout = 1;
+      # plugin = {
+      #   hyprtrails.color = "rgba(ffaa00ff)";
+      # };
       bindl = [
         ", XF86MonBrightnessUp  , exec, brightnessctl s 5%+"
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
@@ -203,20 +208,20 @@
       "$Locker" = "loginctl lock-session";
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        "$mainMod, Return, exec, rofi-sensible-terminal"
-        # "$mainMod, Return, exec, uwsm app -- rofi-sensible-terminal"
+        # "$mainMod, Return, exec, rofi-sensible-terminal"
+        "$mainMod, Return, exec, uwsm app -- rofi-sensible-terminal"
         "$mainMod, w,      killactive,"
 
-        "$mainMod, Space, exec, rofi -show drun || wofi --show drun"
-        # "$mainMod, Space, exec, rofi -show drun || uwsm app -- $(wofi --show drun --define=drun-print_desktop_file=true)"
+        # "$mainMod, Space, exec, rofi -show drun || wofi --show drun"
+        "$mainMod, Space, exec, rofi -show drun || uwsm app -- $(wofi --show drun --define=drun-print_desktop_file=true)"
         # "$mainMod, x,     exec, env -u WAYLAND_DISPLAY rofi -show drun || wofi --show drun"
         # "$mainMod, Space, exec, wofi --show drun"
 
-        ", XF86Calculator, exec, qalculate-qt"
-        # ", XF86Calculator, exec, uwsm app -- qalculate-qt"
+        # ", XF86Calculator, exec, qalculate-qt"
+        ", XF86Calculator, exec, uwsm app -- qalculate-qt"
 
-        "$mainMod, e, exec, emacsclient -c"
-        # "$mainMod, e, exec, uwsm app -- emacsclient -c"
+        # "$mainMod, e, exec, emacsclient -c"
+        "$mainMod, e, exec, uwsm app -- emacsclient -c"
 
         # "$mainMod CTRL, v, exec, wl-paste -n | wtype -"
         "$mainMod CTRL, v, exec, wl-paste -n | xdotool type --clearmodifiers --delay 50 --file -"
@@ -276,6 +281,8 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up,   workspace, e-1"
 
+        "$mainMod, Escape, toggleswallow"
+
         # "$mainMod, M, exit,"
 
         # "$mainMod, P, pseudo,"      # dwindle
@@ -296,8 +303,8 @@
 
       bind =,       l, exec,   $Locker
       bind =,       l, submap, reset
-      bind =,       e, exit,
-      # bind =,       e, exec,   loginctl terminate-user ""
+      # bind =,       e, exit,
+      bind =,       e, exec,   if uwsm check is-active; then uwsm stop; else hyprctl dispatch exit; fi
       bind =,       s, exec,   systemctl suspend
       bind =,       s, submap, reset
       bind =,       h, exec,   systemctl hibernate
@@ -310,6 +317,6 @@
 
       submap = reset
     '';
-    plugins = [ ];
+    # plugins = [ ];
   };
 }

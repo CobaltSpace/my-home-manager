@@ -12,17 +12,27 @@
       let
         wlr_window = {
           format = " {}";
-          rewrite = {
-            "(.*) - Twitch — Mozilla Firefox$" = "󰈹  $1";
-            "(.*) Subscriptions - YouTube — Mozilla Firefox$" = "󰈹 󰵀 $1";
-            "^(.*) - YouTube — Mozilla Firefox$" = "󰈹  $1";
-            "^(.*) — Mozilla Firefox$" = "󰈹$1";
-            "(.*) — Tor Browser$" = "$1";
-            "(.*) - Chromium$" = " $1";
-            "^Zoom Meeting$" = " ";
-            "(.*) - NVIM" = "$1";
-            # "(.*) - zsh" = " [$1]";
-          };
+          rewrite =
+            let
+              brave = "<span font='Font Awesome 6 Brands'> </span>";
+            in
+            {
+              "(.*) - NVIM" = " $1";
+              "(.*) - mpv" = " $1";
+              "(.*) - Twitch — Mozilla Firefox$" = "󰈹  $1";
+              "^(.*) - YouTube — Mozilla Firefox$" = "󰈹  $1";
+              "^(.*) — Mozilla Firefox$" = "󰈹 $1";
+              "(.*) — Tor Browser$" = " $1";
+              "(.*) - Twitch - Chromium$" = "  $1";
+              "(.*) - YouTube - Chromium$" = "  $1";
+              "^(.*) - Chromium$" = " $1";
+              "(.*) - Twitch - Brave$" = "${brave} $1";
+              "(.*) - YouTube - Brave$" = "${brave} $1";
+              "^(.*) - Brave$" = "${brave}$1";
+              "^Zoom Meeting$" = "";
+              "(.*) - Discord" = " $1";
+              # "(.*) - zsh" = " [$1]";
+            };
         };
         wlr_workspaces = {
           format = "{icon}";

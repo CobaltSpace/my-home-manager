@@ -6,6 +6,7 @@
     ./shell
     ./graphical
 
+    ./git.nix
     ./keybase.nix
     ./miscpkgs.nix
     ./nix.nix
@@ -66,6 +67,8 @@
       BUNDLE_USER_CONFIG = "${config.xdg.configHome}/bundle/config";
       BUNDLE_USER_PLUGIN = "${config.xdg.dataHome}/bundle";
 
+      DOTNET_CLI_HOME="${config.xdg.dataHome}/dotnet";
+
       # PATH="$(systemd-path user-binaries):$PATH";
 
       env_sources = "\${env_sources+$env_sources,}home-manager";
@@ -74,7 +77,7 @@
       "$(systemd-path user-binaries)"
       "${config.xdg.configHome}/emacs/bin"
       "${GOPATH}/bin"
-      "~/.dotnet/tools"
+      "${DOTNET_CLI_HOME}/tools"
     ];
 
     preferXdgDirectories = true;

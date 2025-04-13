@@ -13,10 +13,6 @@
       positionY = "bottom";
     };
   };
-  # systemd.user.services.swaync = lib.mkForce {};
   xdg.configFile."systemd/user/swaync.service".enable = false;
-  # systemd.user.services.swaync = lib.mkForce null;
-  # systemd.user.services = lib.mkAfter (
-  #   builtins.removeAttrs config.systemd.user.services [ "swaync" ]
-  # );
+  systemd.user.services.swaync.Service.ExecStart = lib.mkForce /usr/bin/swaync;
 }
