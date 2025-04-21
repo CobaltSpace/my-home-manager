@@ -7,8 +7,8 @@
       # adl
       mcstatus
       # wlx-overlay-s
-      # hyprland
-      # vesktop
+
+      vulkan-hdr-layer-kwin6
 
       # jprofiler
       unimatrix
@@ -24,6 +24,8 @@
       lemminx
 
       glsl_analyzer
+
+      pdf2djvu
 
       # # It is sometimes useful to fine-tune packages, for example, by applying
       # # overrides. You can do that directly here, just don't forget the

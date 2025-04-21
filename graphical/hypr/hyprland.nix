@@ -67,7 +67,7 @@
         enable_swallow = true;
         swallow_regex = lib.strings.concatStringsSep "|" [
           ''^Alacritty$''
-          ''^com\.mitchellh.ghostty$''
+          ''^com\.mitchellh\.ghostty$''
         ];
         swallow_exception_regex = lib.strings.concatStringsSep "|" [
           ''.*wev.*''
@@ -94,7 +94,7 @@
         # "swayidle"
         "hypridle"
 
-        "if not uwsm check is-active; then systemctl --user restart xdg-desktop-portal-gtk.service && systemctl --user restart xdg-desktop-portal.service; fi"
+        "if ! uwsm check is-active; then systemctl --user restart xdg-desktop-portal-gtk.service && systemctl --user restart xdg-desktop-portal.service; fi"
 
         "systemctl --user start hyprpolkitagent.service"
 
@@ -104,7 +104,10 @@
         # "wl-paste -t text -w sh -c 'xclip -selection clipboard -o < /dev/null > /dev/null 2> /dev/null || xclip -selection clipboard'"
 
         # "../acpid.sh"
+        # ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity & echo $! > $XDG_RUNTIME_DIR/hypr/systemd-inhibit''
+        ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity''
       ];
+      # exec-shutdown = [ ''kill "$(cat $XDG_RUNTIME_DIR/hypr/systemd-inhibit)"'' ];
       windowrule = [
         ''noborder,                            floating:0,                  onworkspace:w[tv1]''
         # ''rounding 3,                        class:^itunes.exe$''
@@ -118,6 +121,7 @@
         ''noanim,                              class:^itunes.exe$,          title:^$''
         ''float,                               class:^firefox$,             title:^Picture-in-Picture$''
         ''size 1920 1080,                      class:^firefox$,             title:^Picture-in-Picture$''
+        ''float,                               class:^$,                    title:^Picture in picture$'' # brave
         ''float,                               class:^engrampa$,            title:^Extract$''
         ''float,                               class:^(io.github.Qalculate.qalculate-qt|org\.(gnome\.Calculator|kde\.kruler))$''
         ''noborder,                            class:^org\.kde\.kruler$''
@@ -209,11 +213,11 @@
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         # "$mainMod, Return, exec, rofi-sensible-terminal"
-        "$mainMod, Return, exec, uwsm app -- rofi-sensible-terminal"
+        "$mainMod, Return, exec, if uwsm check is-active; then uwsm app -- rofi-sensible-terminal; else rofi-sensible-terminal; fi"
         "$mainMod, w,      killactive,"
 
         # "$mainMod, Space, exec, rofi -show drun || wofi --show drun"
-        "$mainMod, Space, exec, rofi -show drun || uwsm app -- $(wofi --show drun --define=drun-print_desktop_file=true)"
+        "$mainMod, Space, exec, rofi -show drun || if uwsm check is-active; then uwsm app -- $(wofi --show drun --define=drun-print_desktop_file=true); else wofi --show drun; fi"
         # "$mainMod, x,     exec, env -u WAYLAND_DISPLAY rofi -show drun || wofi --show drun"
         # "$mainMod, Space, exec, wofi --show drun"
 
@@ -221,7 +225,7 @@
         ", XF86Calculator, exec, uwsm app -- qalculate-qt"
 
         # "$mainMod, e, exec, emacsclient -c"
-        "$mainMod, e, exec, uwsm app -- emacsclient -c"
+        "$mainMod, e, exec, if uwsm check is-active; then uwsm app -- emacsclient -c; else emacsclient -c; fi"
 
         # "$mainMod CTRL, v, exec, wl-paste -n | wtype -"
         "$mainMod CTRL, v, exec, wl-paste -n | xdotool type --clearmodifiers --delay 50 --file -"
