@@ -17,6 +17,8 @@
       video-sync = "display-resample";
       hwdec = "auto";
 
+      ytdl-format = "bestvideo[height<=?4096]+bestaudio/best";
+
       # video-align-y = -1;
       video-unscaled = "downscale-big";
 
@@ -68,7 +70,8 @@
         ''set video-unscaled no ; change-list glsl-shaders set "/usr/share/mpv-shim-default-shaders/shaders/FSRCNNX_x2_8-0-4-1.glsl"'';
       "CTRL+2" =
         ''set video-unscaled no ; change-list glsl-shaders set "/usr/share/mpv-shim-default-shaders/shaders/FSRCNNX_x2_16-0-4-1.glsl"'';
-      "CTRL+8" = ''set video-unscaled no ; change-list glsl-shaders set "/usr/share/mpv-shim-default-shaders/shaders/FSR.glsl"'';
+      "CTRL+8" =
+        ''set video-unscaled no ; change-list glsl-shaders set "/usr/share/mpv-shim-default-shaders/shaders/FSR.glsl"'';
       "CTRL+9" = ''set video-unscaled no ; change-list glsl-shaders clr ""'';
       "CTRL+0" = ''change-list glsl-shaders clr "" ; set video-unscaled downscale-big'';
     };

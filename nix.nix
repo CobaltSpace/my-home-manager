@@ -21,6 +21,7 @@
     nixfmt-rfc-style
     nurl
     statix
+    nix
   ];
   # home.shellAliases.home-manager = "home-manager --impure";
   # home.shellAliases.home-manager = "home-manager --impure --flake='path:${config.xdg.configHome}/home-manager'";

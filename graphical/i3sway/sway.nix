@@ -7,20 +7,21 @@
 {
   wayland.windowManager.sway = {
     enable = true;
-    package =
-      lib.mkIf (builtins.pathExists /usr/bin/sway) # null;
-        (
-          pkgs.runCommandLocal "system-sway" { } ''
-            mkdir -p $out/bin
-            # ln -s /usr/bin/sway $out/bin/
-            ln -s /usr/bin/swaymsg $out/bin/
-          ''
-        );
+    package = lib.mkIf (builtins.pathExists /usr/bin/sway) null;
+    # (
+    #   pkgs.runCommandLocal "system-sway" { } ''
+    #     mkdir -p $out/bin
+    #     # ln -s /usr/bin/sway $out/bin/
+    #     ln -s /usr/bin/swaymsg $out/bin/
+    #   ''
+    # );
     extraConfigEarly = lib.strings.concatLines [
       # "include /etc/sway/config.d/*"
       "set $Locker loginctl lock-session"
     ];
     checkConfig = !builtins.pathExists /usr/bin/sway;
+    xwayland = lib.mkIf (builtins.pathExists /usr/bin/Xwayland) false;
+    extraConfig = "xwayland enable";
     config = {
       keybindings =
         let
@@ -34,7 +35,8 @@
           "${modifier}+e" = "exec '. ${config.xdg.configHome}/sway/vars.env && emacsclient -c'";
           XF86Calculator = "exec '. ${config.xdg.configHome}/sway/vars.env && qalculate-qt'";
           XF86Tools = "exec '. ${config.xdg.configHome}/sway/vars.env && lutris lutris:rungame/itunes'";
-          "${modifier}+Space" = "exec '. ${config.xdg.configHome}/sway/vars.env && rofi -show drun || wofi -show drun'";
+          "${modifier}+Space" =
+            "exec '. ${config.xdg.configHome}/sway/vars.env && rofi -show drun || wofi -show drun'";
           "${modifier}+Ctrl+Space" = "exec pkill rofi";
           "${modifier}+Ctrl+Space+Shift" = "exec pkill -KILL rofi";
 

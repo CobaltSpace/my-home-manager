@@ -2,15 +2,16 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = lib.mkIf (builtins.pathExists /usr/bin/hyprland) (
-      lib.makeOverridable (
-        { ... }:
-        pkgs.runCommandLocal "system-hyprctl" { } ''
-          mkdir -p $out/bin
-          ln -s /usr/bin/hyprctl $out/bin/
-        ''
-      ) { }
-    );
+    package = lib.mkIf (builtins.pathExists /usr/bin/hyprland) null;
+    # package = lib.mkIf (builtins.pathExists /usr/bin/hyprland) (
+    #   lib.makeOverridable (
+    #     { ... }:
+    #     pkgs.runCommandLocal "system-hyprctl" { } ''
+    #       mkdir -p $out/bin
+    #       ln -s /usr/bin/hyprctl $out/bin/
+    #     ''
+    #   ) { }
+    # );
     portalPackage = lib.mkIf (builtins.pathExists /usr/lib/xdg-desktop-portal-hyprland) null;
     systemd.enable = false;
     importantPrefixes = [
@@ -24,7 +25,7 @@
       source = [ "./experimental.conf" ];
       env = [
         "_JAVA_AWT_WM_NONREPARENTING,1"
-        "QT_QPA_PLATFORMTHEME,gtk3"
+        "QT_QPA_PLATFORMTHEME,qt6ct"
         "BROWSER,firefox"
         "TERMINAL,ghostty"
         # "AMD_VULKAN_ICD,RADV"
@@ -146,7 +147,7 @@
         ''float,                               class:^(org.wezfurlong.wezterm)$''
         ''tile,                                class:^(org.wezfurlong.wezterm)$''
 
-        ''fullscreen,                          class:^(steam_app_1229490|hl2_linux)$''
+        ''fullscreen,                          class:^(steam_app_(1229490|2379780)|hl2_linux)$''
 
         ''nofocus,                             class:^steam$,               title:^notificationtoasts''
         ''stayfocused,                         class:^steam$,               title:^$''
@@ -176,9 +177,20 @@
         # wide_color_gamut = true;
       };
       render.direct_scanout = 1;
-      # plugin = {
-      #   hyprtrails.color = "rgba(ffaa00ff)";
-      # };
+      plugin = {
+        # hyprtrails.color = "rgba(ffaa00ff)";
+        hyprexpo = {
+          columns = 4;
+          # gap_size = 5;
+          # bg_col = "rgb(111111)";
+          workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
+
+          # enable_gesture = true; # laptop touchpad
+          gesture_fingers = 3; # 3 or 4
+          # gesture_distance = 300; # how far is the "max"
+          # gesture_positive = true; # positive = swipe down. Negative = swipe up.
+        };
+      };
       bindl = [
         ", XF86MonBrightnessUp  , exec, brightnessctl s 5%+"
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
@@ -298,29 +310,34 @@
         "CTRL,  Print, exec, grimblast --notify copysave window"
 
         "SUPER ALT , q , submap , $submap_system"
+        "          , XF86PowerOff , submap , $submap_system"
       ];
-      "$submap_system" =
-        "System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown";
+      "$submap_system" = "System (l) lock, (e) logout, (s) suspend, (r) reboot, (p) shutdown";
     };
     extraConfig = ''
       submap = $submap_system
 
-      bind =,       l, exec,   $Locker
-      bind =,       l, submap, reset
-      # bind =,       e, exit,
-      bind =,       e, exec,   if uwsm check is-active; then uwsm stop; else hyprctl dispatch exit; fi
-      bind =,       s, exec,   systemctl suspend
-      bind =,       s, submap, reset
-      bind =,       h, exec,   systemctl hibernate
-      bind =,       h, submap, reset
-      bind =,       r, exec,   reboot
-      bind = SHIFT, s, exec,   shutdown now
+      bind =, l, exec,   $Locker
+      bind =, l, submap, reset
+      bind =, e, exec,   if uwsm check is-active; then uwsm stop; else hyprctl dispatch exit; fi
+      bind =, s, exec,   systemctl suspend
+      bind =, s, submap, reset
+      # bind =, h, exec,   systemctl hibernate
+      # bind =, h, submap, reset
+      bind =, r, exec,   reboot
+      bind =, p, exec,   shutdown now
 
       bind =, Return, submap, reset
       bind =, Escape, submap, reset
 
       submap = reset
     '';
-    # plugins = [ ];
+    plugins = with pkgs.hyprlandPlugins; [
+      hyprexpo
+      hyprspace
+      # hyprtrails
+      hyprwinwrap
+      hypr-dynamic-cursors
+    ];
   };
 }

@@ -1,7 +1,10 @@
-{ config, pkgs, ... }: {
-  home.packages = with pkgs;
-    [
-      (config.lib.nixGL.wrap keybase-gui)
-      (config.lib.nixGL.wrap vulkan-hdr-layer-kwin6)
+{ config, pkgs, ... }:
+{
+  home.packages =
+    with pkgs;
+    builtins.map (pkg: config.lib.nixGL.wrap pkg) [
+      keybase-gui
+      vulkan-hdr-layer-kwin6
+      alcom
     ];
 }

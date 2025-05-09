@@ -19,9 +19,9 @@
     ./swaync.nix
     ./waybar.nix
   ];
-  nixpkgs.overlays = lib.mkIf (builtins.pathExists /usr/bin/Xwayland) [
-    (final: prev: { xwayland = pkgs.emptyDirectory; })
-  ];
+  # nixpkgs.overlays = lib.mkIf (builtins.pathExists /usr/bin/Xwayland) [
+  #   (final: prev: { xwayland = pkgs.emptyDirectory; })
+  # ];
   home.sessionVariables = {
     XCURSOR_PATH =
       lib.mkIf (config.targets.genericLinux.enable && builtins.isNull config.home.pointerCursor)

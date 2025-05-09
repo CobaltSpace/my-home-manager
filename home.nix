@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   imports = [
     # <catppuccin/modules/home-manager>
@@ -36,7 +36,7 @@
       PAGER = "bat";
       MANPAGER = "bat -p";
 
-      ABDUCO_SOCKET_DIR="\${XDG_RUNTIME_DIR:-/run/user/$UID}";
+      ABDUCO_SOCKET_DIR = "\${XDG_RUNTIME_DIR:-/run/user/$UID}";
       GOPATH = "${config.xdg.dataHome}/go";
       FFMPEG_DATADIR = "${config.xdg.dataHome}/ffmpeg";
       AVCONV_DATADIR = FFMPEG_DATADIR;
@@ -67,7 +67,7 @@
       BUNDLE_USER_CONFIG = "${config.xdg.configHome}/bundle/config";
       BUNDLE_USER_PLUGIN = "${config.xdg.dataHome}/bundle";
 
-      DOTNET_CLI_HOME="${config.xdg.dataHome}/dotnet";
+      DOTNET_CLI_HOME = "${config.xdg.dataHome}/dotnet";
 
       # PATH="$(systemd-path user-binaries):$PATH";
 
@@ -89,6 +89,8 @@
       XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
     };
   };
+
+  programs.man.package = lib.mkIf (builtins.pathExists /usr/bin/man) pkgs.emptyDirectory;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
