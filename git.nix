@@ -8,6 +8,7 @@
     signing = {
       format = null;
       signByDefault = true;
+      key = "4D33F57CB5EC1A9B";
     };
     extraConfig = {
       push.autoSetupRemote = true;

@@ -77,7 +77,7 @@
     };
   };
   home.shellAliases = {
-    mpvhdr = "ENABLE_HDR_WSI=1 mpv --profile=hdr";
+    mpvhdr = "mpv --profile=hdr";
 
     lofi = "mpv 'ytdl://jfKfPfyJRdk' --profile=lofi";
     asianlofi = "mpv 'ytdl://Na0w3Mz46GA' --profile=lofi";

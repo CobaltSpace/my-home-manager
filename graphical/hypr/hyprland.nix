@@ -45,7 +45,7 @@
       };
       device = [
         {
-          name = "wlxoverlay-s-keyboard-mouse-hybrid-thing-1";
+          name = "wlxoverlay-s-mouse";
           natural_scroll = false;
         }
         # {
@@ -83,7 +83,8 @@
         # "hyprctl setcursor CG 37"
         "hyprctl setcursor capitaine-cursors 24"
 
-        "if uwsm check is-active; then uwsm app -- swaync; else swaync; fi"
+        # "if uwsm check is-active; then uwsm app -- swaync; else swaync; fi"
+        "if uwsm check is-active; then uwsm app -- dunst; else dunst; fi"
 
         "uwsm check is-active || dex -ae hyprland"
 
@@ -120,8 +121,8 @@
         ''size 600 600,                        class:^itunes.exe$,          title:MiniPlayer$''
         ''forcergbx,                           class:^itunes.exe$,          title:^$''
         ''noanim,                              class:^itunes.exe$,          title:^$''
-        ''float,                               class:^firefox$,             title:^Picture-in-Picture$''
-        ''size 1920 1080,                      class:^firefox$,             title:^Picture-in-Picture$''
+        ''float,                               class:^(firefox|zen)$,       title:^Picture-in-Picture$''
+        ''size 1920 1080,                      class:^(firefox|zen)$,       title:^Picture-in-Picture$''
         ''float,                               class:^$,                    title:^Picture in picture$'' # brave
         ''float,                               class:^engrampa$,            title:^Extract$''
         ''float,                               class:^(io.github.Qalculate.qalculate-qt|org\.(gnome\.Calculator|kde\.kruler))$''

@@ -35,8 +35,8 @@
           on-resume = "hyprctl dispatch dpms on || swaymsg 'output * power on'"; # screen on when activity is detected after timeout has fired.
         }
         {
-          timeout = 80; # .5min
-          on-timeout = "pidof hyprlock && { hyprctl dispatch dpms off || swaymsg 'output * power on' }"; # screen off when timeout has passed
+          timeout = 30; # .5min
+          on-timeout = "if pidof hyprlock; then hyprctl dispatch dpms off || swaymsg 'output * power off'; fi"; # screen off when timeout has passed
           on-resume = "hyprctl dispatch dpms on || swaymsg 'output * power on'"; # screen on when activity is detected after timeout has fired.
         }
       ];

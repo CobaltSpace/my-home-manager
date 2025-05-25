@@ -15,8 +15,8 @@
     ./mpv.nix
     ./neovide.nix
     ./nixGL.nix
+    ./notifications.nix
     ./rofi.nix
-    ./swaync.nix
     ./waybar.nix
   ];
   # nixpkgs.overlays = lib.mkIf (builtins.pathExists /usr/bin/Xwayland) [
