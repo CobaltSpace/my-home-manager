@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
     # <catppuccin/modules/home-manager>
@@ -47,10 +52,6 @@
       SCREENRC = "${config.xdg.configHome}/screenrc";
       WINEPREFIX = "${config.xdg.dataHome}/wineprefixes/default";
       DISTCC_DIR = "$(systemd-path user-runtime)/distcc";
-      # TEXMFCNF="${config.xdg.dataHome}/texmf:";
-      TEXMFHOME = "${config.xdg.dataHome}/texmf";
-      TEXMFVAR = "${config.xdg.cacheHome}/texlive/texmf-var";
-      TEXMFCONFIG = "${config.xdg.configHome}/texlive/texmf-config";
       ASPELL_CONF = "per-conf ${config.xdg.configHome}/aspell/aspell.conf; personal ${config.xdg.configHome}/aspell/en.pws; repl ${config.xdg.configHome}/aspell/en.prepl";
       GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
       KODI_DATA = "${config.xdg.dataHome}/kodi";

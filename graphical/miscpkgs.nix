@@ -4,7 +4,8 @@
     with pkgs;
     builtins.map (pkg: config.lib.nixGL.wrap pkg) [
       keybase-gui
-      vulkan-hdr-layer-kwin6
       alcom
+      # obs-studio-plugins.obs-vkcapture
+      vrcx
     ];
 }
