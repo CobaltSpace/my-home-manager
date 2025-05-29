@@ -260,8 +260,12 @@
         "$mainMod SHIFT, bracketleft,  movewindow, mon:l"
         "$mainMod SHIFT, bracketright, movewindow, mon:r"
 
-        "$mainMod CTRL, bracketleft,  movecurrentworkspacetomonitor, l"
-        "$mainMod CTRL, bracketright, movecurrentworkspacetomonitor, r"
+        # "$mainMod CTRL, bracketleft,  movecurrentworkspacetomonitor, l"
+        # "$mainMod CTRL, bracketright, movecurrentworkspacetomonitor, r"
+        "$mainMod CTRL, $up,    movecurrentworkspacetomonitor, u"
+        "$mainMod CTRL, $down,  movecurrentworkspacetomonitor, d"
+        "$mainMod CTRL, $left,  movecurrentworkspacetomonitor, l"
+        "$mainMod CTRL, $right, movecurrentworkspacetomonitor, r"
 
         "$mainMod, f, fullscreen, 0"
         "$mainMod, s, togglefloating,"

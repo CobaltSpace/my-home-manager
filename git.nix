@@ -1,8 +1,13 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   programs.git = {
     enable = true;
-    package = pkgs.emptyDirectory;
+    package = lib.mkIf (builtins.pathExists /usr/bin/git) pkgs.emptyDirectory;
     userName = "Cobalt Space";
     userEmail = "cobaltspace@protonmail.com";
     signing = {
@@ -14,6 +19,19 @@
       push.autoSetupRemote = true;
       credential.helper = "store";
       init.defaultBranch = "master";
+    };
+
+    delta = {
+      enable = true;
+      package = lib.mkIf (builtins.pathExists /usr/bin/delta) (
+        pkgs.runCommandLocal "system delta" { } ''
+          mkdir -p $out/bin
+          ln -s /usr/bin/delta $out/bin/delta
+        ''
+      );
+      options = {
+        pager = "less";
+      };
     };
   };
 }

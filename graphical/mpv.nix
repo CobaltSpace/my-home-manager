@@ -72,7 +72,7 @@
         ''set video-unscaled no ; change-list glsl-shaders set "/usr/share/mpv-shim-default-shaders/shaders/FSRCNNX_x2_16-0-4-1.glsl"'';
       "CTRL+8" =
         ''set video-unscaled no ; change-list glsl-shaders set "/usr/share/mpv-shim-default-shaders/shaders/FSR.glsl"'';
-      "CTRL+9" = ''set video-unscaled no ; change-list glsl-shaders clr ""'';
+      "CTRL+9" = ''change-list glsl-shaders clr "" ; set video-unscaled no ;'';
       "CTRL+0" = ''change-list glsl-shaders clr "" ; set video-unscaled downscale-big'';
     };
   };

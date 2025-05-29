@@ -42,6 +42,10 @@
       };
     };
   };
+  xdg.configFile."dunst/dunstrc.d/mocha.conf".source = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/catppuccin/dunst/5955cf0213d14a3494ec63580a81818b6f7caa66/themes/mocha.conf";
+    hash = "sha256-v/Ger5s0WUXNUreIM3HvaBcJCR9B4lCrQQrFkW7PSIg=";
+  };
 
   xdg.configFile."systemd/user/dunst.service".enable = false;
   systemd.user.services.dunst.Service = { };

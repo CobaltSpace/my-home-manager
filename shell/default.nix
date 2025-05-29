@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
   imports = [
     ./zsh.nix
   ];
@@ -54,34 +55,37 @@
   programs = {
     zoxide = {
       enable = true;
-      package = lib.mkIf (builtins.pathExists /usr/bin/zoxide) (pkgs.runCommandLocal "system-zoxide" { meta.mainProgram = "zoxide"; } ''
-        mkdir -p $out/bin
-        ln -s /usr/bin/zoxide $out/bin/
-      '');
+      package = lib.mkIf (builtins.pathExists /usr/bin/zoxide) (
+        pkgs.runCommandLocal "system-zoxide" { meta.mainProgram = "zoxide"; } ''
+          mkdir -p $out/bin
+          ln -s /usr/bin/zoxide $out/bin/
+        ''
+      );
     };
     starship = {
       # enable = true;
       enableTransience = true;
-      package = lib.mkIf (builtins.pathExists /usr/bin/starship) (pkgs.runCommandLocal "system-starship" { } ''
-        mkdir -p $out/bin
-        ln -s /usr/bin/starship $out/bin/
-      '');
+      package = lib.mkIf (builtins.pathExists /usr/bin/starship) (
+        pkgs.runCommandLocal "system-starship" { } ''
+          mkdir -p $out/bin
+          ln -s /usr/bin/starship $out/bin/
+        ''
+      );
     };
-    bat = {
-      enable = true;
-      package = lib.mkIf (builtins.pathExists /usr/bin/bat) (pkgs.runCommandLocal "system-bat" { meta.mainProgram = "bat"; } ''
-        mkdir -p $out/bin
-        ln -s /usr/bin/bat $out/bin/
-      '');
-      # catppuccin.enable = true;
-      config.theme = "Catppuccin Mocha";
-      themes."Catppuccin Mocha" = {
-        src = pkgs.catppuccin.override {
-          themeList = [ "bat" ];
-          variant = "mocha";
-        };
-        file = "bat/Catppuccin Mocha.tmTheme";
-      };
-    };
+    # bat = {
+    #   enable = true;
+    #   package = lib.mkIf (builtins.pathExists /usr/bin/bat) (pkgs.runCommandLocal "system-bat" { meta.mainProgram = "bat"; } ''
+    #     mkdir -p $out/bin
+    #     ln -s /usr/bin/bat $out/bin/
+    #   '');
+    #   config.theme = "Catppuccin Mocha";
+    #   themes."Catppuccin Mocha" = {
+    #     src = pkgs.catppuccin.override {
+    #       themeList = [ "bat" ];
+    #       variant = "mocha";
+    #     };
+    #     file = "bat/Catppuccin Mocha.tmTheme";
+    #   };
+    # };
   };
 }
