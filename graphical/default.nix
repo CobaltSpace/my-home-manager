@@ -18,6 +18,7 @@
     ./notifications.nix
     ./rofi.nix
     ./waybar.nix
+    ./zathura.nix
   ];
   # nixpkgs.overlays = lib.mkIf (builtins.pathExists /usr/bin/Xwayland) [
   #   (final: prev: { xwayland = pkgs.emptyDirectory; })

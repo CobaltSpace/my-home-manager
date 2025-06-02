@@ -191,6 +191,7 @@
           # gesture_distance = 300; # how far is the "max"
           # gesture_positive = true; # positive = swipe down. Negative = swipe up.
         };
+        dynamic-cursors.shake.enabled = false;
       };
       bindl = [
         ", XF86MonBrightnessUp  , exec, brightnessctl s 5%+"
