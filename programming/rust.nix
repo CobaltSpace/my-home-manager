@@ -5,9 +5,7 @@
       CARGO_HOME = "${config.xdg.dataHome}/cargo";
       RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
     };
-    sessionPath = [
-      "$CARGO_HOME/bin"
-    ];
+    sessionPath = [ "$CARGO_HOME/bin" ];
   };
   xdg.dataFile."cargo/config.toml".source = (pkgs.formats.toml { }).generate "cargo-config.toml" {
     build = {
@@ -19,7 +17,7 @@
         "link-arg=-fuse-ld=mold"
       ];
     };
-    "profile.release".lto = true;
+    profile.release.lto = true;
     net.git-fetch-with-cli = true;
   };
 }

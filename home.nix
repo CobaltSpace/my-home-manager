@@ -38,8 +38,6 @@
     sessionVariables = with config.home.sessionVariables; {
       EDITOR = "nvim";
       SUDO_EDITOR = EDITOR;
-      PAGER = "bat";
-      MANPAGER = "bat -p";
 
       ABDUCO_SOCKET_DIR = "\${XDG_RUNTIME_DIR:-/run/user/$UID}";
       GOPATH = "${config.xdg.dataHome}/go";
@@ -74,11 +72,11 @@
 
       env_sources = "\${env_sources+$env_sources,}home-manager";
     };
-    sessionPath = with config.home.sessionVariables; [
+    sessionPath = lib.mkBefore [
       "$(systemd-path user-binaries)"
       "${config.xdg.configHome}/emacs/bin"
-      "${GOPATH}/bin"
-      "${DOTNET_CLI_HOME}/tools"
+      "$GOPATH/bin"
+      "$DOTNET_CLI_HOME/tools"
     ];
 
     preferXdgDirectories = true;

@@ -1,23 +1,27 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  npmrc = {
+    prefix = "${config.xdg.dataHome}/npm";
+    cache = "${config.xdg.cacheHome}/npm";
+    init-module = "${config.xdg.configHome}/npm/config/npm-init.js";
+    logs-dir = "${config.xdg.stateHome}/npm/logs";
+  };
+in
+{
+  xdg.configFile."npm/npmrc".text = lib.generators.toINIWithGlobalSection { } {
+    globalSection = npmrc;
+  };
   home = {
     sessionVariables = {
-      NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npmrc";
+      NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
       NVM_DIR = "${config.xdg.dataHome}/nvm";
     };
-    sessionPath = [
-      "${config.xdg.dataHome}/npm/bin"
-    ];
-    packages = with pkgs; lib.mkIf (!builtins.pathExists /usr/bin/biome) [
-      biome
-    ];
-  };
-  xdg.configFile.npmrc.text = lib.generators.toINIWithGlobalSection { } {
-    globalSection = {
-      prefix = "${config.xdg.dataHome}/npm";
-      cache = "${config.xdg.cacheHome}/npm";
-      init-module = "${config.xdg.configHome}/npm/config/npm-init.js";
-      logs-dir = "${config.xdg.stateHome}/npm/logs";
-    };
+    sessionPath = [ "${npmrc.prefix}/bin" ];
+    packages = with pkgs; lib.mkIf (!builtins.pathExists /usr/bin/biome) [ biome ];
   };
 }

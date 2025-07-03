@@ -2,6 +2,7 @@
 {
   imports = [
     ./zsh.nix
+    ./bat.nix
   ];
   home.shellAliases = {
     # home-manager = "home-manager --impure";
@@ -72,20 +73,5 @@
         ''
       );
     };
-    # bat = {
-    #   enable = true;
-    #   package = lib.mkIf (builtins.pathExists /usr/bin/bat) (pkgs.runCommandLocal "system-bat" { meta.mainProgram = "bat"; } ''
-    #     mkdir -p $out/bin
-    #     ln -s /usr/bin/bat $out/bin/
-    #   '');
-    #   config.theme = "Catppuccin Mocha";
-    #   themes."Catppuccin Mocha" = {
-    #     src = pkgs.catppuccin.override {
-    #       themeList = [ "bat" ];
-    #       variant = "mocha";
-    #     };
-    #     file = "bat/Catppuccin Mocha.tmTheme";
-    #   };
-    # };
   };
 }

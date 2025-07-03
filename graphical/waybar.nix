@@ -249,9 +249,21 @@ in
           ];
         };
         pulseaudio = {
+          format = "{icon} {volume}% {format_source}";
+          format-muted = "<span color=red>{icon}</span> {volume}% {format_source}";
+          format-bluetooth = "{icon}  {volume}% {format_source}";
+          format-bluetooth-muted = "<span color=red>{icon} </span> {volume}% {format_source}";
+          format-source = " {volume}%";
+          format-source-muted = "<span color=red>  </span>{volume}%";
+          format-icons = {
+            default-muted = "󰝟";
+            headphone-muted = "󰟎";
+            headset-muted = "󰟎";
+          };
           on-click = "pavucontrol-qt";
           on-click-right = "qpwgraph";
           on-click-middle = "easyeffects";
+          max-length = null;
         };
         tray.spacing = 5;
       };
@@ -272,6 +284,9 @@ in
           min-height: inherit;
           margin: .375rem;
         }
+        /* #pulseaudio { */
+        /*   width: auto; */
+        /* } */
       '';
     # ''@import "${waybar-minimal}/src/style.css";'';
   };
