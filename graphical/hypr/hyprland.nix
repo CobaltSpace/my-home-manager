@@ -111,64 +111,65 @@
       ];
       # exec-shutdown = [ ''kill "$(cat $XDG_RUNTIME_DIR/hypr/systemd-inhibit)"'' ];
       windowrule = [
-        ''noborder,                            floating:0,                  onworkspace:w[tv1]''
-        # ''rounding 3,                        class:^itunes.exe$''
-        # ''tile,                              class:^itunes.exe$,          title:^iTunes$''
-        # ''nofullscreenrequest,               class:^itunes.exe$,          title:^iTunes$''
-        ''size 472 700,                        class:^itunes.exe$,          title:Info$''
-        ''center,                              class:^itunes.exe$,          title:Info$''
-        ''pseudo,                              class:^itunes.exe$,          title:MiniPlayer$''
-        ''size 600 600,                        class:^itunes.exe$,          title:MiniPlayer$''
-        ''forcergbx,                           class:^itunes.exe$,          title:^$''
-        ''noanim,                              class:^itunes.exe$,          title:^$''
-        ''float,                               class:^(firefox|zen)$,       title:^Picture-in-Picture$''
-        ''size 1920 1080,                      class:^(firefox|zen)$,       title:^Picture-in-Picture$''
-        ''float,                               class:^$,                    title:^Picture in picture$'' # brave
-        ''float,                               class:^engrampa$,            title:^Extract$''
-        ''float,                               class:^(io.github.Qalculate.qalculate-qt|org\.(gnome\.Calculator|kde\.kruler))$''
-        ''noborder,                            class:^org\.kde\.kruler$''
+        ''noborder,                          floating:0,                  onworkspace:w[tv1]''
+        ''rounding 5,                        class:itunes.exe''
+        # ''tile,                            class:itunes.exe,          title:iTunes''
+        # ''nofullscreenrequest,             class:itunes.exe,          title:iTunes''
+        ''size 472 700,                      class:itunes.exe,          title:Info''
+        ''center,                            class:itunes.exe,          title:Info''
+        ''pseudo,                            class:itunes.exe,          title:MiniPlayer''
+        ''size 600 600,                      class:itunes.exe,          title:MiniPlayer''
+        ''noblur,                            class:itunes.exe,          title:^$''
+        ''noanim,                            class:itunes.exe,          title:^$''
+        ''noborder,                          class:itunes.exe,          title:^$''
+        ''noshadow,                          class:itunes.exe,          title:^$''
+        ''float,                             class:firefox|zen,         title:Picture-in-Picture''
+        ''size 1920 1080,                    class:firefox|zen,         title:Picture-in-Picture''
+        ''float,                             class:^$,                  title:Picture in picture'' # brave
+        ''float,                             class:engrampa,            title:Extract''
+        ''float,                             class:io\.github\.Qalculate\.qalculate-qt|org\.(gnome\.Calculator|kde\.kruler)''
+        ''noborder,                          class:org\.kde\.kruler''
 
-        ''size 410 448,                        class:^winecfg.exe$,         title:^Wine configuration$''
-        ''size 500 500,                        class:^msiexec.exe$''
+        ''size 410 448,                      class:winecfg.exe,         title:Wine configuration''
+        ''size 500 500,                      class:msiexec.exe''
 
-        ''noanim,                              class:^vrmonitor$,           title:^vrmonitor$''
-        ''noblur,                              class:^vrmonitor$,           title:^vrmonitor$''
-        ''noborder,                            class:^vrmonitor$,           title:^vrmonitor$''
+        ''noanim,                            class:vrmonitor,           title:vrmonitor''
+        ''noblur,                            class:vrmonitor,           title:vrmonitor''
+        ''noborder,                          class:vrmonitor,           title:vrmonitor''
 
-        ''noborder,                            class:^vesktop$,             title:^vesktop$''
-        ''noblur,                              class:^vesktop$,             title:^vesktop$''
-        ''noshadow,                            class:^vesktop$,             title:^vesktop$''
-        # ''noborder,                          class:^vesktop$,             title:^vesktop$''
+        ''noborder,                          class:vesktop,             title:vesktop''
+        ''noblur,                            class:vesktop,             title:vesktop''
+        ''noshadow,                          class:vesktop,             title:vesktop''
 
-        # ''monitor current,                   class:^Unity$,               title:^UnityEditor\.ObjectSelector$''
+        # ''monitor current,                   class:Unity,               title:UnityEditor\.ObjectSelector''
 
-        # ''monitor current,                   class:Unity,                 floating:1''
-        # ''center,                            class:Unity,                 floating:1''
+        # ''monitor current,                   class:Unity,               floating:1''
+        # ''center,                            class:Unity,               floating:1''
 
-        ''float,                               class:^(org.wezfurlong.wezterm)$''
-        ''tile,                                class:^(org.wezfurlong.wezterm)$''
+        # ''float,                             class:org\.wezfurlong\.wezterm''
+        # ''tile,                              class:org\.wezfurlong\.wezterm''
 
-        ''fullscreen,                          class:^(steam_app_(1229490|2379780)|hl2_linux)$''
+        ''fullscreen,                        class:steam_app_(1229490|2379780)|hl2_linux''
 
-        ''nofocus,                             class:^steam$,               title:^notificationtoasts''
-        ''stayfocused,                         class:^steam$,               title:^$''
+        ''nofocus,                           class:steam,               title:notificationtoasts''
+        # ''stayfocused,                       class:steam,               title:^$''
 
-        ''stayfocused,                         class:^Keybase$''
+        ''stayfocused,                       class:Keybase''
 
-        ''stayfocused,                         class:^zoom$,                title:^menu window$''
-        ''noblur,                              class:^zoom$''
+        ''stayfocused,                       class:zoom,                title:menu window''
+        ''noblur,                            class:zoom''
 
-        ''idleinhibit always,                  class:^vrmonitor$''
-        # ''idleinhibit focus,                 class:^(gamescope|steam_app_(858210|253030))$''
-        ''idleinhibit focus,                   class:^(steam_app_(438100|1468260)|virt-manager)$''
-        # ''idleinhibit fullscreen,            class:^itunesvisualizerhost\.exe$''
+        ''idleinhibit always,                class:vrmonitor''
+        # ''idleinhibit focus,                 class:gamescope|steam_app_(858210|253030)''
+        ''idleinhibit focus,                 class:steam_app_(438100|1468260)|virt-manager''
+        # ''idleinhibit fullscreen,            class:itunesvisualizerhost\.exe''
 
-        # ''opacity 0.0 override 0.0 override, class:^xwaylandvideobridge$, title:^Wayland to X Recording bridge — Xwayland Video Bridge$
-        # ''nofocus,                           class:^xwaylandvideobridge$, title:^Wayland to X Recording bridge — Xwayland Video Bridge$
-        # ''noinitialfocus,                    class:^xwaylandvideobridge$, title:^Wayland to X Recording bridge — Xwayland Video Bridge$
+        # ''opacity 0.0 override 0.0 override, class:xwaylandvideobridge, title:Wayland to X Recording bridge — Xwayland Video Bridge''
+        # ''nofocus,                           class:xwaylandvideobridge, title:Wayland to X Recording bridge — Xwayland Video Bridge''
+        # ''noinitialfocus,                    class:xwaylandvideobridge, title:Wayland to X Recording bridge — Xwayland Video Bridge''
 
-        ''float,                               class:^mpv$,                 xwayland:1''
-        ''nomaxsize,                           class:^mpv$,                 xwayland:1''
+        ''float,                             class:mpv,                 xwayland:1''
+        ''nomaxsize,                         class:mpv,                 xwayland:1''
       ];
       # workspace = [ "w[v1], border:false" ];
       xwayland.force_zero_scaling = true;
