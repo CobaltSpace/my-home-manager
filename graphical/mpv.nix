@@ -88,7 +88,7 @@
 
     lofirain = "mpv 'ytdl://-OekvEFm1lo' --profile=lofi --no-vid";
 
-    mpvmic = "mpv --profile=microphone";
+    mpvmic = "mpv --profile=audioshare";
   };
   wayland.windowManager.hyprland.settings.plugin.hyprwinwrap.class = [ "mpv-bg" ];
 }

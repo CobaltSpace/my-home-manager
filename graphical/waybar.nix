@@ -128,7 +128,7 @@ in
           # "custom/wifi" # wi-fi
           # "bluetooth" # bluetooth
           # "custom/update" # system update
-          "tray"
+          "pulseaudio" # output device
           "custom/right5"
         ];
         modules-right = [
@@ -136,7 +136,7 @@ in
           "mpris" # media info
 
           "custom/left6"
-          "pulseaudio" # output device
+          "tray"
 
           "custom/left7"
           "backlight" # brightness
