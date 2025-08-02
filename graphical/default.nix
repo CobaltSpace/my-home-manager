@@ -8,6 +8,7 @@
   imports = [
     ./alacritty.nix
     ./chromium.nix
+    ./discord.nix
     ./ghostty.nix
     ./hypr
     ./i3sway

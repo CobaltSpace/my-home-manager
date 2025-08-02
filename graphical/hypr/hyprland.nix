@@ -161,7 +161,9 @@
 
         ''idleinhibit always,                class:vrmonitor''
         # ''idleinhibit focus,                 class:gamescope|steam_app_(858210|253030)''
-        ''idleinhibit focus,                 class:steam_app_(438100|1468260)|virt-manager''
+        ''float,                             class:vrchat\.exe''
+        ''decorate off,                      class:vrchat\.exe''
+        ''idleinhibit focus,                 class:steam_app_438100|virt-manager|vrchat\.exe''
         # ''idleinhibit fullscreen,            class:itunesvisualizerhost\.exe''
 
         # ''opacity 0.0 override 0.0 override, class:xwaylandvideobridge, title:Wayland to X Recording bridge — Xwayland Video Bridge''

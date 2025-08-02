@@ -260,7 +260,7 @@ in
             headphone-muted = "󰟎";
             headset-muted = "󰟎";
           };
-          on-click = "pavucontrol-qt";
+          on-click = "pwvucontrol || pavucontrol-qt || pavucontrol";
           on-click-right = "qpwgraph";
           on-click-middle = "easyeffects";
           max-length = null;

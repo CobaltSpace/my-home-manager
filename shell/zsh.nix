@@ -8,7 +8,7 @@
   programs.zsh = {
     enable = true;
     package = lib.mkIf (builtins.pathExists /usr/bin/zsh) pkgs.emptyDirectory;
-    dotDir = lib.strings.removePrefix "${config.home.homeDirectory}/" "${config.xdg.configHome}/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     history = {
       path = "${config.xdg.stateHome}/zshhistory";
       ignoreAllDups = true;
