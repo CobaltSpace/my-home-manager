@@ -20,4 +20,5 @@
     profile.release.lto = true;
     net.git-fetch-with-cli = true;
   };
+  systemd.user.tmpfiles.rules = [ "f %t/nvim/leetcode/Cargo.toml" ];
 }

@@ -9,6 +9,7 @@
     ./alacritty.nix
     ./chromium.nix
     ./discord.nix
+    ./flatpak.nix
     ./ghostty.nix
     ./hypr
     ./i3sway
@@ -18,6 +19,7 @@
     ./nixGL.nix
     ./notifications.nix
     ./rofi.nix
+    ./steam.nix
     ./waybar.nix
     ./zathura.nix
   ];
@@ -46,6 +48,8 @@
   };
   home.packages = with pkgs; [
     quicksand
+    monocraft
+    miracode
     (lib.mkIf (!lib.pathExists /usr/share/fonts/OTF/ipaexg.ttf) ipaexfont)
     (runCommand "klee-one" { } ''
       mkdir -p $out/share

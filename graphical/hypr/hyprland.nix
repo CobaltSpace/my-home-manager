@@ -149,6 +149,8 @@
         # ''float,                             class:org\.wezfurlong\.wezterm''
         # ''tile,                              class:org\.wezfurlong\.wezterm''
 
+        ''float,                             class:xdg-desktop-portal-gtk''
+
         ''fullscreen,                        class:steam_app_(1229490|2379780)|hl2_linux''
 
         ''nofocus,                           class:steam,               title:notificationtoasts''

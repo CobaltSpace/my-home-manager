@@ -4,7 +4,7 @@
     enable = true;
     package = null;
     settings = {
-      font-family = "FantasqueSansM Nerd Font";
+      font-family = "Miracode";
       # theme = "catppuccin-mocha";
       theme = "cyberdream";
       background = "black";
