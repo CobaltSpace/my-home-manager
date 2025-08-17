@@ -81,7 +81,8 @@
       };
       exec-once = [
         # "hyprctl setcursor CG 37"
-        "hyprctl setcursor capitaine-cursors 24"
+        # "hyprctl setcursor capitaine-cursors 24"
+        "hyprctl setcursor Posy_Cursor_Black 24"
 
         # "if uwsm check is-active; then uwsm app -- swaync; else swaync; fi"
         "if uwsm check is-active; then uwsm app -- dunst; else dunst; fi"

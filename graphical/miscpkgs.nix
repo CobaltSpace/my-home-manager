@@ -2,7 +2,8 @@
 {
   home.packages =
     with pkgs;
-    builtins.map (pkg: config.lib.nixGL.wrap pkg) [
+    [ ]
+    ++ builtins.map (pkg: config.lib.nixGL.wrap pkg) [
       keybase-gui
       alcom
 

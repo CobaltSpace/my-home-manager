@@ -18,16 +18,25 @@
       "com.steamgriddb.SGDBoop"
       "dev.ftb.ftb-app"
       "io.ente.auth"
-      "org.vinegarhq.Sober"
+      "io.github.Soundux"
       "net.davidotek.pupgui2"
+      "org.freedesktop.Platform.VulkanLayer.MangoHud//24.08"
+      "org.vinegarhq.Sober"
       "sh.ppy.osu"
     ]
     ++ builtins.map (obs-plugin: "com.obsproject.Studio.Plugin." + obs-plugin) [
+      "DistroAV"
       "OBSVkCapture"
+      "SourceRecord"
     ];
     uninstallUnmanaged = true;
     overrides = {
-      global.Context.filesystems = "xdg-data/icons:ro";
+      global.Context.filesystems = [
+        "xdg-data/icons:ro"
+        "host/nix:ro"
+        "xdg-config/MangoHud:ro"
+      ];
+      "dev.ftb.ftb-app".Context.sockets = "wayland";
     };
   };
 }
