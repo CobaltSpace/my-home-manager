@@ -16,7 +16,6 @@
       "com.github.tchx84.Flatseal"
       "com.obsproject.Studio"
       "com.steamgriddb.SGDBoop"
-      "dev.ftb.ftb-app"
       "io.ente.auth"
       "io.github.Soundux"
       "net.davidotek.pupgui2"

@@ -175,6 +175,8 @@
 
         ''float,                             class:mpv,                 xwayland:1''
         ''nomaxsize,                         class:mpv,                 xwayland:1''
+
+        ''renderunfocused,                   class:com\.mojang\.minecraft\.java-edition''
       ];
       # workspace = [ "w[v1], border:false" ];
       xwayland.force_zero_scaling = true;

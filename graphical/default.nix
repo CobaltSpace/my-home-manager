@@ -53,7 +53,7 @@
     };
     sessionSearchVariables.XCURSOR_PATH = [
       "${config.xdg.dataHome}/icons"
-      "${config.home.homeDirectory}/icons"
+      "${config.home.homeDirectory}/.icons"
     ];
     # pointerCursor = {
     #   enable = true;
